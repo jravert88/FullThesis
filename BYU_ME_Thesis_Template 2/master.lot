@@ -1,0 +1,19 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces The resources available with three NVIDIA GPUs used in this thesis (1x Tesla K40c 2x Tesla K20c). Note that CUDA configures the size of the L1 cache needed.\relax }}{29}{table.caption.34}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Defining start and stop lines for timing comparison in Listing \ref {code:convFun}.\relax }}{39}{table.caption.44}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Convolution computation times with signal length $12$,$672$ and filter length $186$ on a Tesla K40c GPU.\relax }}{41}{table.caption.49}
+\contentsline {table}{\numberline {3.4}{\ignorespaces Convolution computation times with signal length $12$,$672$ and filter length $23$ on a Tesla K40c GPU.\relax }}{42}{table.caption.50}
+\contentsline {table}{\numberline {3.5}{\ignorespaces Defining start and stop lines for execution time comparison in Listing \ref {code:batchedConvFun}.\relax }}{44}{table.caption.51}
+\contentsline {table}{\numberline {3.6}{\ignorespaces Convolution using batch processing execution times with for a $12$,$672$ sample signal and $186$ tap filter on a Tesla K40c GPU.\relax }}{46}{table.caption.57}
+\contentsline {table}{\numberline {3.7}{\ignorespaces Convolution using batch processing execution times with for a $12$,$672$ sample signal and $23$ tap filter on a Tesla K40c GPU.\relax }}{46}{table.caption.58}
+\contentsline {table}{\numberline {3.8}{\ignorespaces Batched convolution execution times with for a $12$,$672$ sample signal and cascaded $23$ and $186$ tap filter on a Tesla K40c GPU.\relax }}{48}{table.caption.60}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Algorithms used to compute the ZF and MMSE equalizer filters.\relax }}{67}{table.caption.65}
+\contentsline {table}{\numberline {4.2}{\ignorespaces MATLAB code listing for the CMA equalizer.\relax }}{70}{table.caption.67}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Algorithms used to compute the cost function gradient $\nabla J$.\relax }}{71}{table.caption.70}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Execution times for calculating and applying Frequency Domain Equalizer One and Two.\relax }}{72}{table.caption.71}
+\contentsline {table}{\numberline {4.5}{\ignorespaces Execution times for blocks in Figure \ref {fig:GPUpipeLines} in order as they appear left to right then top to bottom.\relax }}{76}{table.caption.74}
+\addvspace {10\p@ }
+\addvspace {10\p@ }

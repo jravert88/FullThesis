@@ -1,0 +1,18 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: master.aux
+A level-1 auxiliary file: intro-problemStatement.aux
+A level-1 auxiliary file: systemOverview.aux
+A level-1 auxiliary file: signalProcessingInGPUs.aux
+A level-1 auxiliary file: equalizer_implementation_performance.aux
+A level-1 auxiliary file: final_summary.aux
+The style file: ieeetran.bst
+A level-1 auxiliary file: appendixb.aux
+Database file #1: refs.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--missing institution in inet-ran:2012
+Warning--empty year in inet-ran:2012
+Warning--empty journal in al2008single
+
+Done.
+(There were 3 warnings)

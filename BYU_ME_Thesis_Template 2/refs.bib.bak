@@ -1,0 +1,1206 @@
+@BOOK{SomeSweetBook06,
+  AUTHOR =       {Some Smart Guy},
+  TITLE =        {The Best Book Ever},
+  PUBLISHER =    {A Good Publisher},
+  YEAR =         {2006},
+  volume =       {1},
+  address =      {Provo, UT},
+  edition =      {2},
+}
+
+@ARTICLE{SomeSweetArticle06,
+  AUTHOR =       {Another Smart Guy},
+  TITLE =        {Second Best Article Ever},
+  JOURNAL =      {IEEE Journal of Cool Stuff},
+  YEAR =         {2006},
+  volume =       {3},
+  number =       {4},
+  pages =        {45--53},
+}
+
+% Journal article
+
+@ARTICLE{Abramovitch90,
+  AUTHOR    = "Daniel Y. Abramovitch",
+  TITLE     = "Lyapunov Redesign of Analog Phase-Lock Loops",
+  JOURNAL   = "IEEE Transactions on Communications",
+  YEAR      = "1990",
+  VOLUME    = "38",
+  NUMBER    = "12",
+  PAGES     = "2197--2202",
+  MONTH     = "December",
+  ABSTRACT  = "
+  Location:
+    Digital Library
+  Keywords:
+    phase lock loops
+    Lyapunov redesign
+    stability analysis
+  Comments:
+    This paper uses Lyapunov analysis to show stability for a simple
+                  nonlinear model of phase lock loops with zero noise,
+                  step inputs, and 1st and 2nd order low pass
+                  filters.  It should be fairly easy to extend this
+                  paper to more general low pass filters and also to
+                  improve the design using the satisficing approach.
+  ",
+}
+
+% Conference article
+@INPROCEEDINGS{Aeyels86,
+  AUTHOR    = "Dirk Aeyels",
+  TITLE     = "Local and Global Stabilizability for Nonlinear Systems",
+  BOOKTITLE = "Theory and Applications of Nonlinear Control Systems",
+  YEAR      = "1986",
+  EDITOR    = "C. I. Byrnes and A. Lindquist",
+  PUBLISHER = "Elsevier Science Publishers",
+  ADDRESS   = "North-Holland",
+  PAGES     = "93--105",
+  ABSTRACT  = "
+  Location:
+    ref DB 7
+  Keywords:
+    Nonlinear systems,
+    stabilization,
+    smooth feedback control law,
+    global stabilization,
+    center manifold,
+    power system
+  Comments:
+Stabilization by smooth feedback in the neighborhood of an equilibrium
+                  point of a control system is considered.  By means
+                  of the integral manifold approach we extend this
+                  result to a global context.  Then the stabilization
+                  of a synchronous generator with speed control, after
+                  the occurrence of a symmetric fault is
+                  investigated.
+  ",
+}
+
+%Book
+@BOOK{Jazwinski70,
+  AUTHOR    = "Andrew H. Jazwinski",
+  TITLE     = "Stochastic Processes and Filtering Theory",
+  PUBLISHER = "Academic Press, Inc.",
+  ADDRESS       = "New York, New York",
+  YEAR      = "1970",
+  VOLUME    = "64",
+  SERIES    = "Mathematics in Science and Engineering",
+}
+
+@PHDTHESIS{,
+  AUTHOR =       {},
+  TITLE =        {},
+  SCHOOL =       {},
+  YEAR =         {},
+  type =         {},
+  address =      {},
+  month =        {},
+  note =         {},
+  abstract =     {},
+  keywords =     {},
+  source =       {},
+}
+
+@MASTERSTHESIS{,
+  AUTHOR =       {},
+  TITLE =        {},
+  SCHOOL =       {},
+  YEAR =         {},
+  type =         {},
+  address =      {},
+  month =        {},
+  note =         {},
+  abstract =     {},
+  keywords =     {},
+  source =       {},
+}
+
+@ARTICLE{,
+  AUTHOR =       {},
+  TITLE =        {},
+  JOURNAL =      {},
+  YEAR =         {},
+  volume =       {},
+  number =       {},
+  pages =        {},
+  month =        {},
+  note =         {},
+  keywords =     {
+                  
+                 },
+  abstract =     {
+                  
+                 },
+}
+
+@BOOK{,
+  AUTHOR =       {},
+  editor =       {},
+  TITLE =        {},
+  PUBLISHER =    {},
+  YEAR =         {},
+  volume =       {},
+  number =       {},
+  series =       {},
+  address =      {},
+  edition =      {},
+  month =        {},
+  note =         {},
+  price =        {},
+  keywords =     {},
+  abstract =     {},
+  isbn =         {},
+  source =       {},
+}
+
+@INPROCEEDINGS{,
+  AUTHOR =       {},
+  TITLE =        {},
+  BOOKTITLE =    {},
+  YEAR =         {},
+  editor =       {},
+  volume =       {},
+  number =       {},
+  series =       {},
+  pages =        {},
+  address =      {},
+  month =        {},
+  organization = {},
+  publisher =    {},
+  note =         {},
+  keywords =     {
+                  
+                 },
+  abstract =     {
+                  
+                 },
+}
+
+@MISC{,
+  author =       {},
+  title =        {},
+  howpublished = {},
+  year =         {},
+  month =        {},
+  note =         {},
+  abstract =     {},
+  keywords =     {},
+  source =       {},
+}
+
+@Article{preamble_detector,
+  Title                    = {On Frame Synchronization in Aeronautical Telemetry},
+  Author                   = {M. Rice and A. McMurdie},
+  Journal                  = {IEEE Transactions on Aerospace and Electronic Systems},
+  Year                     = {2016},
+  Month                    = {October},
+  Number                   = {5},
+  Pages                    = {2263-2280},
+  Volume                   = {52},
+  DOI                      = {10.1109/TAES.2016.150439},
+  ISSN                     = {0018-9251}
+}
+
+@Book{mengali-dandrea:1997,
+	author = "U. Mengali and A. D'Andrea",
+	title = "Synchronization Techniques for Digital Receivers",
+	publisher = "Springer",
+	address = "New York",
+	year = "1997"
+}
+
+@book{proakis-salehi:2008,
+	author = {J. Proakis and M. Salehi},
+	title = {Digital Communications},
+	edition = {5th},
+	publisher = {McGraw-Hill},
+	address = {New York},
+	year = {2008}
+}
+
+@Article{kay:1989,
+	author = {S. Kay},
+	title = {A Fast and Accurate Single Frequency Estimator},
+	journal = {{IEEE} Transactions on Acoustics, Speech, and Signal Processing},
+	volume = {37},
+	number = {12},
+	month = {December},
+	year = {1989},
+	pages = {1987--1990}
+}
+
+@Article{mengali-morelli:1997,
+	author = {U. Mengali and M. Morelli},
+	title = {Data-Aided Frequency Estimation for Burst Digital Transmission},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 45,
+	number = 1,
+	month = {January},
+	year = 1997,
+	pages = {23--25}
+}
+
+@Article{fitz:1994,
+	author = {M. Fitz},
+	title = {Further Results in the Fast Estimation of a Single Frequency},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 42,
+	number = {2/3/4},
+	month = {February/March/April},
+	year = 1994,
+	pages = {862--864}
+}
+
+@Article{luise-reggiannini:1995,
+	author = {M. Luise and R. Reggiannini},
+	title = {Carrier Frequency Recovery in All-Digital Modems for Burst-Mode Transmissions},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 43,
+	number = {2/3/4},
+	month = {February/March/April},
+	year = 1995,
+	pages = {1169--1178}
+}
+
+@Article{rife-boostyn:1974,
+	author = {D. Rife and R. Boorstyn},
+	title = {Single Tone Parameter Estimation From Discrete-Time Observations},
+	journal = {{IEEE} Transactions on Information Theory},
+	volume = 20,
+	number = 5,
+	month = {September},
+	year = 1974,
+	pages = {591--598}
+}
+
+@Article{choi-lee:2002,
+	author = {Z. Choi and Y. Lee},
+	title = {Frame Synchronization in the Presence of Frequency Offset},
+	journal = {{IEEE} Transactions on Communications},
+	volume = {50},
+	number = {7},
+	month = {July},
+	year = {2002},
+	pages = {1062--1065}
+}
+
+@article{corazza-pedone-villanti:2006,
+	author = {G. Corazza and R. Pedone and M. Villanti},
+	title = {Frame Acquisition for Continuous and Discontinuous Transmission in the Forward Link of {Ka}-Band Satellite Systems},
+	journal = {International Journal of Satellite Communications and Networking},
+	volume = 24,
+	number = 2,
+	month = {March/April},
+	year = 2006,
+	pages = {185--201}
+}
+
+@Article{pedone:2010,
+	author = {R. Pedone and M. Villanti and A. Vanelli-Coralli and G. Corazza and P. Mathiopoulos},
+	title = {Frame Synchronization in Frequency Uncertainty},
+	journal = {{IEEE} Transactions on Communications},
+	volume = {58},
+	number = {4},
+	month = {April},
+	year = {2010},
+	pages = {1235--1246}
+}
+
+@Article{perrins-rice:2007,
+	author = {E. Perrins and M. Rice},
+	title = {Reduced-Complexity Approach to Iterative Detection of Coded {SOQPSK}},
+	journal = {{IEEE} Transactions on Communications},
+	volume = {55},
+	number = {7},
+	month = {July},
+	year = {2007},
+	pages = {1354--1362}
+}
+
+@Article{perrins:2013,
+	author = {E. Perrins},
+	title = {{FEC} Systems for Aeronautical Telemetry},
+	journal = {{IEEE} Transactions on Aerospace and Electronic Systems},
+	volume = {49},
+	number = {4},
+	month = {October},
+	year = {2013},
+	pages = {2340--2352}
+}
+
+@techreport{m4a:2013,
+	author = {M. Rice and others},
+	title = {Final Report: Multipath Modeling and Mitigation Using Multiple Antennas ({M4A})},
+	institution = {Brigham Young University},
+	year = {2013},
+	note = {Submitted to the Spectrum Efficient Technologies (SET) Office of the Science \& Technology, Test \& Evaluation 
+	(S\&T/T\&E) Program, Test Resource Management Center (TRMC). Also available on-line at \url{
+	http://hdl.lib.byu.edu/1877/3241}}
+}
+
+@book{hayes:1996,
+	author = {M. Hayes},
+	title = {Statistical Digital Signal Processing and Modeling},
+	publisher = {John Wiley \& Sons},
+	address = {New York},
+	year = {1996}
+}
+
+@InProceedings{ye-satorius-jedrey:2001,
+	author = {Z. Ye and E. Satorius and T. Jedrey},
+	title = {Enhancement of Advanced Range Telemetry ({ARTM}) Channels Via Blind Equalization},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	year = 2001,
+	month = {October},
+	address = {Las Vegas, NV}
+}
+
+@InProceedings{hill-geoghegan:2002,
+	author = {T. Hill and M. Geoghegan},
+	title = {A Comparison of Adaptively Equalized {PCM/FM}, {SOQPSK}, and Multi-h {CPM} in a Multipath Channel},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	year = 2002,
+	month = {October},
+	address = {San Diego, CA}
+}
+
+@InProceedings{geoghegan:2003,
+	author = {M. Geoghegan},
+	title = {Experimental Results for {PCM/FM}, {Tier I SOQPSK}, and {Tier II Multi-h CPM} with {CMA} Equalization},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	year = 2003,
+	month = {October},
+	address = {Las Vegas, NV}
+}
+
+@InProceedings{law:2004,
+	author = {E. Law},
+	title = {How Well Does a Blind Adaptive {CMA} Equalizer Work in a Simulated Telemetry Multipath Environment?},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	year = 2004,
+	month = {October},
+	address = {San Diego, CA}
+}
+
+@article{baksalary:2010,
+	author = {O. Baksalary and D. Bernstein and G. Trenkler},
+	title = {On the Equality between Rank and Trace of an Idempotent Matrix},
+	journal = {Applied Mathematics and Computation},
+	volume = {217},
+	pages = {4076-–4080},
+	year = {2010},
+	note = {Also available at \url{http://www-personal.umich.edu/~dsbaero/library/BaksalaryBernstein.pdf} (accessed 5 April 2014)}
+}
+
+@manual{irig106,
+	Address = {Range Commanders Council, White Sands Missile Range, New Mexico},
+	Note = {(Available on-line at {http://www.irig106.org/docs/106-09})},
+	Organization = {Secretariat},
+	Title = {IRIG Standard 106-09: Telemetry Standards},
+	Year = 2009
+}
+
+@Article{leung-feher:1993,
+  author =   {P. S. Leung and K. Feher},
+  title =    {{F-QPSK}--A Superior modulation technique for mobile and personal communications},
+  journal =      {{IEEE} Transactions on Broadcasting},
+  year =     1993,
+  volume =   39,
+  pages =    {288-294},
+  month =    {June}
+}
+
+@InProceedings{hill:2000,
+  author =   {T. J. Hill},
+  title =    {An enhanced, constant envelope, interoperable shaped offset {QPSK (SOQPSK)} waveform for improved spectral efficiency},
+  booktitle =    {Proceedings of the International Telemetering Conference},
+  year =     2000,
+  address =  {San Diego, CA},
+  month =    {October}
+}
+
+@Article{simon-li:2004,
+  author =   {L. Li and M. K. Simon},
+  title =    {Performance of Coded {OQPSK} and {MIL-STD SOQPSK} With Iterative Decoding},
+  journal =      {{IEEE} Transactions on Communications},
+  year =     2004,
+  volume =   52,
+  pages =    {1890-1900},
+  month =    {November}
+}
+
+@Book{anderson-aulin-sundberg:1986,
+  author =   {J. B. Anderson and T. Aulin and C.-E. Sundberg},
+  title =    {Digital Phase Modulation},
+  publisher =    {Plenum Press},
+  year =     1986,
+  address =  {New York}
+}
+
+@InProceedings{geoghegan:2002a,
+  author =   {M. Geoghegan},
+  title =    {Optimal Linear Detection of {SOQPSK}},
+  booktitle =    {Proceedings of the International Telemetering Conference},
+  year =     2002,
+  address =  {San Diego, CA},
+  month =    {October}
+}
+
+@InProceedings{geoghegan:2001,
+  author =   {M. Geoghegan},
+  title =    {Implementation and Performance Results for Trellis Detection of {SOQPSK}},
+  booktitle =    {Proceedings of the International Telemetering Conference},
+  year =     2001,
+  address =  {Las Vegas, NV},
+  month =    {October}
+}
+
+@InProceedings{geoghegan:2002b,
+  author =   {M. Geoghegan},
+  title =    {Bandwidth and Power Efficiency Trade-Offs of {SOQPSK}},
+  booktitle =    {Proceedings of the International Telemetering Conference},
+  year =     2002,
+  address =  {San Diego, CA},
+  month =    {October}
+}
+
+@article{nelson-perrins-rice:2008,
+	author = {T. Nelson and E. Perrins and M. Rice},
+	title = {Near Optimal Common Detection Techniques for Shaped Offset {QPSK} and {F}eher's {QPSK}},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 56,
+	number = 5,
+	month = {May},
+	year = 2008,
+	pages = {724--735}
+}
+
+@book{rice:2009,
+	author = {M. Rice},
+	title = {Digital Communications: A Discrete-Time Approach},
+	publisher = {Pearson Prentice-Hall},
+	address = {Upper Saddle River, NJ},
+	year = {2009}
+}
+
+@article{widrow-mccool:1976,
+	author = {B. Widrow and J. {McCool}},
+	title = {A Comparison of Adaptive Algorithms Based on the Methods of Steepest Descent and Random Search},
+	journal = {{IEEE} Transactions on Antennas and Propagation},
+	volume = 24,
+	month = {September},
+	year = 1976,
+	pages = {615--637}
+}
+
+@article{perrins-rice:2008,
+	author = {E. Perrins and M. Rice},
+	title = {{PAM} Representation of Ternary {CPM}},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 56,
+	number = 12,
+	month = {December},
+	year = 2008,
+	pages = {2020--2024}
+}
+
+@article{raheli-polydoros-tzou:1995,
+	author = {R. Raheli and A. Polydoros and C.-K. Tzou},
+	title = {Per-Survivor Processing: a General Approach to {MLSE} in Uncertain Environments},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 43,
+	number = {2/3/4},
+	month = {February/March/April},
+	year = 1995,
+	pages = {354--364}
+}
+
+@article{esteves-sampaio-neto:1997,
+	author = {E. Esteves and R. Sampaio-Neto},
+	title = {A Per-Survivor Phase Acquisition and Tracking Algorithm for Detection of {TCM} Signals with Phase Jitter and Frequency Error},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 45,
+	number = 11,
+	month = {November},
+	year = 1997,
+	pages = {1381--1384}
+}
+
+@inproceedings{miller:1998,
+	author = {M. Miller},
+	title = {Detection of {CPFSK} Signals Using Per Survivor Processing},
+	booktitle = {Proceedings of the {IEEE} Military Communications Conference},
+	year = 1998,
+	address = {Boston, MA},
+	month = {October},
+	pages = {524--528}
+}
+
+@article{lee-hill:1977,
+	author = {W. Lee and F. Hill},
+	title = {A Maximum-Likelihood Sequence Estimator with Decision Feedback Equalization},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 25,
+	number = 9,
+	month = {September},
+	year = 1977,
+	pages = {971--979}
+}
+
+@article{bergmans:1987,
+	author = {J. Bergmans and S. Rajput and F. Van De Laar},
+	title = {On the Use of Decision Feedback for Simplifying the {V}iterbi Decoder},
+	journal = {Philips Journal of Research},
+	volume = 42,
+	number = 4,
+	year = 1987,
+	pages = {399--428}
+}
+
+@article{wesolowski:1987,
+	author = {K. Wesolowski},
+	title = {Efficient Digital Receiver Structure for Trellis-Coded Signals Transmitted Through Channels with Intersymbol Interference},
+	journal = {Electronics Letters},
+	volume = 23,
+	number = 24,
+	month = {November},
+	year = {1987},
+	pages = {1265--1267}
+}
+
+@article{hashimoto:1987,
+	author = {T. Hashimoto},
+	title = {A List-Type Reduced-Constraint Generalization of the {V}iterbi Algorithm},
+	journal = {{IEEE} Transactions on Information Theory},
+	volume = 33,
+	month = {November},
+	year = 1987,
+	pages = {866--876}
+}
+
+@article{duel-hallen-heegard:1989,
+	author = {A. Duel-Hallen and C. Heegard},
+	title = {Delayed Decision-Feedback Sequence Estimation},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 37,
+	number = 5,
+	month = {May},
+	year = 1989,
+	pages = {428--436}
+}
+
+@article{chevillat-eleftheriou:1989,
+	author = {P. Chevillat and E. Eleftheriou},
+	title = {Decoding of Trellis-Encoded Signals in The Presence of Intersymbol Interference and Noise},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 37,
+	number = 7,
+	month = {July},
+	year = 1989,
+	pages = {669--676}
+}
+
+@article{eyuboglu-qureshi:1989,
+	author = {M. Eyubo\u{g}lu and S. Qureshi},
+	title = {Reduced-State Sequence Estimation for Coded Modulation on Intersymbol Interference Channels},
+	journal = {{IEEE} Journal on Selected Areas in Communications},
+	volume = 7,
+	month = {August},
+	year = 1989,
+	pages = {989--995}
+}
+
+@article{eyuboglu-qureshi:1988,
+	author = {M. Eyubo\u{g}lu and S. Qureshi},
+	title = {Reduced-State Sequence Estimation With Set Partition and Decision Feedback},
+	journal = {{IEEE} Transactions Communications},
+	volume = 36,
+	number = 1,
+	month = {January},
+	year = 1988,
+	pages = {13--20}
+}
+
+@article{martin:2005,
+	author = {R. Martin and others},
+	title = {Unification and Evaluation of Equalization Structures and Design Algorithms for Discrete Multitone Modulation Systems},
+	journal = {{IEEE} Transactions on Signal Processing},
+	volume = 53,
+	number = 10,
+	month = {October},
+	year = 2005,
+	pages = {3880--3894}
+}
+
+@InProceedings{jefferis:2004,
+  author =   {R. P. Jefferis},
+  title =    {Evaluation of constant envelope offset quadrature phase shift keying transmitters with a software based signal analyzer},
+  booktitle =    {Proceedings of the International Telemetering Conference},
+  year =     2004,
+  address =  {San Diego, CA},
+  month =    {October}
+}
+
+@Inproceedings{tu:1993,
+	author = {J. Tu},
+	title = {Optimum {MMSE} Equalization for Staggered Modulation},
+	booktitle = {Proceedings of the {IEEE} Asilomar Conference on Signals, Systems, and Computers},
+	year = 1993,
+	month = {November 1993},
+	address = {Pacific Grove, CA},
+	pages = {1401 - 1405}
+}
+
+@Article{bello-pahlavan:1984,
+	author = {P. Bello and K. Pahlavan},
+	title = {Adaptive Equalization for {SQPSK} and {SQPR} Over Frequency Selective Microwave {LOS} Channels},
+	journal = {{IEEE} Transactions on Communications},
+	year = {1984},
+	month = {May},
+	volume = {32},
+	pages = {609 -- 615}
+}
+
+@InProceedings{rice-satorius1:2004,
+	author = {M. Rice and E. Satorius},
+	title = {A Comparison of {MMSE} and {CMA} Equalization Techniques for {ARTM} {Tier-1} Waveforms},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	year = 2004,
+	month = {October},
+	address = {San Diego, CA}
+}
+
+@InProceedings{rice-satorius2:2004,
+	author = {M. Rice and E. Satorius},
+	title = {Equalization Techniques for Multipath Mitigation in Aeronautical Telemetry},
+	booktitle = {Proceedings of the {IEEE} Military Communications Conference},
+	year = 2004,
+	month = {November},
+	address = {Monterey, CA}
+}
+
+@InProceedings{rice-narumanchi-saquib:2011,
+	author = {M. Rice and G. Narumanchi and M. Saquib},
+	title = {A New Approach to Multipath Mitigation in Aeronautical Telemetry},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	year = 2011,
+	month = {October},
+	address = {Las Vegas, NV}
+}
+
+@InProceedings{beasley-cole-rhodes:2005,
+	author = {A. Beasley and A. Cole-Rhodes},
+	title = {Performance of an Adaptive Blind Equalizer for {QAM} signals},
+	booktitle = {Proceedings of the {IEEE} Military Communications Conference},
+	year = 2005,
+	month = {October},
+	address = {Atlantic City, NJ}
+}
+
+@InProceedings{barbarossa-scaglione:1997,
+	author = {S. Barbarossa and A. Scaglione},
+	title = {Blind Equalization using Cost Functions Matched to the Signal Constellation},
+	booktitle = {Proceedings of the 31st Asilomar Conference on Signals, Systems, and Computers},
+	address = {Pacific Grove, CA},
+	volume = 1,
+	month = {November},
+	year = 1997,
+	pages = {550--554}
+}
+
+@article{johnson:1998,
+	author = {R. Johnson and others},
+	title = {Blind Equalization using the Constant Modulus criterion: A Review},
+	journal = {Proceedings of the {IEEE}},
+	volume = 86,
+	number = 10,
+	month = {October},
+	year = 1998,
+	pages = {1927--1950}
+}
+
+@article{coon-sandell-beach-mcgeehan:2006,
+	author = {J. Coon and M. Sandell and M. Beach and J. McGeehan},
+	title = {Channel and Noise Variance Estimation and Tracking Algorithms for Unique-Word Based Single-Carrier Systems},
+	journal = {{IEEE} Transactions on Wireless Communications},
+	volume = 5,
+	number = 6,
+	month = {June},
+	year = 2006,
+	pages = {1488--1496}
+}
+
+@techreport{inet-ran:2012,
+	author = {{i}ntegrated Network Enhanced Telemetry ({iNET}) Radio Access Network Standards Working Group},
+	title = {Radio Access Network ({RAN}) Standard, version 0.7.9},
+	date = {3 December 2012},
+	note = {Available at \url{https://www.tena-sda.org/display/INET/iNET+Platform+Interface+Standards}}
+}
+
+@Book{schreier-scharf:2010,
+	author = "P. Schreier and L. Scharf",
+	title = "Statistical Signal Processing of Complex-Valued Data",
+	publisher = "Cambridge University Press",
+	address = "New York",
+	year = "2010"
+}
+
+@Book{scharf:1991,
+	author = {L. Scharf},
+	title = {Statistical Signal Processing},
+	publisher = {Prentice Hall},
+	address = {Upper Saddle River, NJ},
+	year = 1991
+}
+
+@inproceedings{rice-mcmurdie:2014,
+	author = {M. Rice and A. McMurdie},
+	title = {A Preamble Detector for {iNET}-Formatted Bursts Using {SOQPSK}},
+	booktitle = {Proceedings of the {IEEE} Military Communications Conference},
+	month = {November},
+	year = {2014},
+	address = {Baltimore, MD}
+}
+
+@inproceedings{rice-perrins:2014,
+	author = {M. Rice and E. Perrins},
+	title = {On Frequency Offset Estimation Using the {iNET} Preamble in Frequency Selective Fading Channels},
+	booktitle = {Proceedings of the {IEEE} Military Communications Conference},
+	month = {November},
+	year = {2014},
+	address = {Baltimore, MD}
+}
+
+@inproceedings{rice-afran-saquib:2014,
+	author = {M. Rice and Md. S. Afran and M. Saquib},
+	title = {Equalization in Aeronautical Telemetry Using Multiple Antennas},
+	booktitle = {Proceedings of the {IEEE} Military Communications Conference},
+	month = {November},
+	year = {2014},
+	address = {Baltimore, MD}
+}
+
+@inproceedings{rice-afran-saquib-cole-rhodes-moazzami:2014,
+	author = {M. Rice and Md. S. Afran and M. Saquib and A. Cole-Rhodes and F. Moazzami},
+	title = {On The Performance of Equalization Techniques for Aeronautical Telemetry},
+	booktitle = {Proceedings of the {IEEE} Military Communications Conference},
+	month = {November},
+	year = {2014},
+	address = {Baltimore, MD}
+}
+
+@techreport{paq-phase1-report:2014,
+	author = {M. Rice and others},
+	title = {Phase 1 Report: Preamble Assisted Equalization for Aeronautical Telemetry ({PAQ})},
+	institution = {Brigham Young University},
+	year = {2014},
+	note = {Submitted to the Spectrum Efficient Technologies (SET) Office of the Science \& Technology, Test \& Evaluation 
+	(S\&T/T\&E) Program, Test Resource Management Center (TRMC). Also available on-line at \url{
+	http://hdl.lib.byu.edu/1877/3242}}
+}
+
+@InProceedings{rice-jensen-itc:2011,
+	author = {M. Rice and M. Jensen},
+	title = {A Comparison of {L}-Band and {C}-Band Multipath Propagation at {E}dwards {AFB}},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	month = {October},
+	year = {2011},
+	address = {Las Vegas, NV}
+}
+
+@article{massey:1972,
+	author = {J. Massey},
+	title = {Optimum Frame Synchronization},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 20,
+	number = 2,
+	month = {April},
+	year = 1972,
+	pages = {115--119}
+}
+
+@incollection{barker:1953,
+	author      = "R. Barker",
+	title       = "Group Synchronization of Binary Digital Systems",
+	editor      = "W. Jackson",
+	booktitle   = "Communication Theory",
+	publisher   = "Butterworth",
+	address     = "London",
+	year        = 1953,
+}
+
+@article{lui-tan:1987,
+	author = {G. Lui and H. Tan},
+	title = {Frame Synchronization for Gaussian Channels},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 35,
+	number = 8,
+	month = {August},
+	year = 1987,
+	pages = {818--829}
+}
+
+@article{gansman-fitz-krogmeier:1997,
+	author = {J. Gansman and M. Fitz and J. Krogmeier},
+	title = {Optimum and Suboptimum Frame Synchronization for Pilot-Symbol-Assisted Modulation},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 45,
+	number = 10,
+	month = {October},
+	year = 1997,
+	pages = {1327--1337}
+}
+
+@inproceedings{erkmen-tkacenko-okino:2009,
+	author = {B. Erkmen and A. Tkacenko and C. Okino},
+	title = {Preamble Design for Symbol Timing Estimation From {SOQPSK-TG} Waveforms},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	month = {October},
+	year = {2009},
+	address = {Las Vegas, NV}
+}
+
+@inproceedings{rice-estimators-itc:2014,
+	author = {M. Rice and M. Saquib and E. Perrins},
+	title = {Estimators for {iNET}-formatted {SOQPSK-TG}},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	month = {October},
+	year = {2014},
+	address = {San Diego, CA}
+}
+
+@inproceedings{mcmurdie-rice-perrins:2014,
+	author = {A. McMurdie and M. Rice and E. Perrins},
+	title = {Preamble Detection for {iNET}-formatted {SOQPSK-TG}},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	month = {October},
+	year = {2014},
+	address = {San Diego, CA}
+}
+
+@inproceedings{rice-afran-saquib-cole-rhodes-moazzami-itc:2014,
+	author = {M. Rice and Md. S. Afran and M. Saquib and A. Cole-Rhodes and F. Moazzami},
+	title = {A Comparison of Three Equalization Techniques For {iNET}-Formatted {SOQPSK-TG}},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	month = {October},
+	year = {2014},
+	address = {San Diego, CA}
+}
+
+@inproceedings{harris-dick:2009,
+	author = {f. harris and C. Dick},
+	title = {Preamble Structure for Fast Acquisition and Equalization of {QAM} Signals},
+	booktitle = {Proceedings of the {SDR}'09 Technical Conference and Product Exposition},
+	month = {1--4 December},
+	year = {2009},
+	address = {Washington, DC}
+}
+% SDR'09 Session 24.
+
+@article{morelli-mengali:2000,
+	author = {M. Morelli and U. Mengali},
+	title = {Carrier-Frequency Estimation for Transmissions over Selective Channels},
+	journal = {{IEEE} Transactions on Communications},
+	volume = 48,
+	number = 9,
+	month = {September},
+	year = 2000,
+	pages = {1580--1589}
+}
+
+@article{milewski:1983,
+	author = {A. Milewski},
+	title = {Periodic Sequences with Optimal Properties for Channel Estimation and Fast Start-Up Equalization},
+	journal = {{IBM} Journal of Research and Development},
+	volume = {27},
+	number = {5},
+	month = {September},
+	year = {1983},
+	pages = {426--431}
+}
+
+@article{crozier-falconer-mahmoud:1991,
+	author = {S. Crozier and D. Falconer and S. Mahmoud},
+	title = {Least Sum of Squared Errors ({LSSE}) channel estimation},
+	journal = {Proceedings of the {IEE}-F},
+	volume  = {138},
+	number = {4},
+	month = {August},
+	year = {1991},
+	pages = {371--378}
+}
+
+@article{tellambura:1999,
+	author = {C. Tellambura and M. Parker and Y. Jay Guo and S. Shepherd and S. Barton},
+	title = {Optimal Sequences for Channel Estimation Using Discrete {F}ourier Transform Techniques},
+	journal = {{IEEE} Transactions on Communications},
+	volume = {47},
+	number = {2},
+	month = {February},
+	year = {1999},
+	pages = {230--238}
+}
+
+@article{lee-pottie:1998,
+	author = {H. Lee and G. Pottie},
+	title = {Fast Adaptive Equalization/Diversity Combining for Time-Varying Dispersive Channels},
+	journal = {{IEEE} Transactions on Communications},
+	volume = {46},
+	number = {9},
+	month = {September},
+	year = {1998},
+	pages = {1146--1162}
+}
+
+@article{hebley-taylor:1998,
+	author = {M. Hebley and D. Taylor},
+	title = {The Effect of Diversity on a Burst-Mode Carrier-Frequency Estimator in the Frequency-Selective Multipath Channel},
+	journal = {{IEEE} Transactions on Communications},
+	volume = {46},
+	number = {4},
+	month = {April},
+	year = {1998},
+	pages = {553--560}
+}
+
+@Book{gardner:1979,
+  author =   {F. Gardner},
+  title =    {Phaselock Techniques},
+  publisher =    {John Wiley \& Sons},
+  year =     1979,
+  address =  {New York}
+}
+
+@article{tang-alouini-goldsmith:1999,
+	author = {X. Tang and M.-S. Alouini and A. Goldsmith},
+	title = {Effect of Channel Estimation Error on {M-QAM} {BER} Performance in {R}ayleigh Fading},
+	journal = {{IEEE} Transactions on Communications},
+	volume = {47},
+	number = {12},
+	month = {December},
+	year = {1999},
+	pages = {1586--1864}
+}
+
+@article{cao-beaulieu:2004,
+	author = {L. Cao and N. Beaulieu},
+	title = {Exact Error-Rate Analysis of Diversity {16-QAM} With Channel Estimation Error},
+	journal = {{IEEE} Transactions on Communications},
+	volume = {52},
+	number = {6},
+	month = {June},
+	year = {2004},
+	pages = {1019--1029}
+}
+
+@article{montorosi-vitetta:2011,
+	author = {F. Montorosi and G. Vitetta},
+	title = {On the Performance Limits of Pilot-Based Estimation of Bandlimited Frequency-Selective Communication Channels},
+	journal = {{IEEE} Transactions on Communications},
+	volume = {59},
+	number = {11},
+	month = {November},
+	year = {2011},
+	pages = {2964--2969}
+}
+
+@techreport{paq-phase1:2014,
+	author = {M. Rice and M. Saquib and A. Cole-Rhodes and F. Moazzami and E. Perrins},
+	title = {Preamble Assisted Equalization for Aeronautical Telemetry: Phase 1 Final Report},
+	institution = {Brigham Young University},
+	year = 2014,
+	month = {April}
+}
+
+@misc{rice-mcmurdie:2016,
+	author = {M. Rice and A. McMurdie},
+	title = {On Frame Synchronization in Aeronautical Telemetry},
+	note = {to appear in \textit{{IEEE} Transactions on Aerospace and Electronic Systems}, December 2016},
+	year = 2016
+}
+
+@misc{CUDA_toolkit_doc,
+	author = {NVIDIA},
+	title = {{CUDA} Toolkit Documentation},
+	year = 2017,
+	url = {http://docs.nvidia.com/cuda/}
+}
+
+@misc{FFTW:2017,
+	author = {Wikipedia},
+	title = {Fastest Fourier Transform in the West},
+	year = 2017,
+	url = {http://www.fftw.org/}
+}
+
+@misc{wikipedia-gpu:2015,
+	author = {Wikipedia},
+	title = {Graphics Processing Unit},
+	year = 2015,
+	url = {http://en.wikipedia.org/wiki/Graphics_processing_unit}
+}
+
+@misc{wikipedia-cuda:2015,
+	author = {Wikipedia},
+	title = "{CUDA}",
+	year = 2015,
+	url = {http://en.wikipedia.org/wiki/CUDA}
+}
+
+@book{papoulis-pillai:2002,
+	author = {A. Papoulis and S. U. Pillai},
+	title = {Probability, Random Variables, and Stochastic Processes},
+	publisher = {McGraw-Hill},
+	address = {Boston},
+	edition = {Fourth},
+	year = 2002
+}
+
+@article{rice-davis-bettwieser:2004,
+	author = {M. Rice and A. Davis and C. Bettweiser},
+	title = {A Wideband Channel Model for Aeronautical Telemetry},
+	journal = {{IEEE} Transactions on Aerospace \& Electronic Systems},
+	volume = 40,
+	number = 1,
+	month = {January},
+	year = 2004,
+	pages = {57--69}
+}
+
+@inproceedings{kinman-berner:2002,
+	author = {P. Kinman and J. Berner},
+	title = {Carrier Synchronization of Offset {QPSK} for Deep Space Telemetry},
+	booktitle = {Proceedings of the {IEEE} Aerospace Conference},
+	address = {Big Sky, MT},
+	year = 2002,
+	pages = {3-1327 -- 3-1336}
+}
+
+@techreport{PAQ-phase1,
+  title={Phase 1 Report: Preamble assisted equalization for aeronautical telemetry ({PAQ}),‖ {Brigham Young University}},
+  author={Rice, M},
+  year={2014},
+  institution={Technical Report, 2014, submitted to the Spectrum Efficient Technologies (SET) Office of the Science \& Technology, Test \& Evaluation (S\&T/T\&E) Program, Test Resource Management Center (TRMC). Also available online at< http://hdl. lib. byu. edu/1877/3242}
+}
+
+@article{williams2013linear,
+  title={Linear frequency domain equalization of {SOQPSK-TG} for wideband aeronautical telemetry channels},
+  author={Williams, Ian E and Saquib, M},
+  journal={IEEE Transactions on Aerospace and Electronic Systems},
+  volume={49},
+  number={1},
+  pages={640--647},
+  year={2013},
+  publisher={IEEE}
+}
+
+@inproceedings{rice2014frequency,
+  title={On Frequency Offset Estimation Using the iNET Preamble in Frequency Selective Fading},
+  author={Rice, Michael and Perrins, Erik},
+  booktitle={Military Communications Conference (MILCOM), 2014 IEEE},
+  pages={706--711},
+  year={2014},
+  organization={IEEE}
+}
+
+@misc{wiki:Sparse_matrix,
+	author = {Wikipedia},
+	title = {Sparse matrix},
+	year = 2017,
+	url = {https://en.wikipedia.org/wiki/Sparse_matrix}
+}
+
+@article{dongarra2016proposed,
+  title={A proposed API for batched basic linear algebra subprograms},
+  author={Dongarra, Jack and Duff, Iain and Gates, Mark and Haidar, Azzam and Hammarling, Sven and Higham, Nicholas J and Hogg, Jonathon and Valero-Lara, Pedro and Relton, Samuel D and Tomov, Stanimire and others},
+  year={2016}
+}
+
+@inproceedings{haidar2015optimization,
+  title={Optimization for performance and energy for batched matrix computations on {GPUs}},
+  author={Haidar, Azzam and Dong, Tingxing and Luszczek, Piotr and Tomov, Stanimire and Dongarra, Jack},
+  booktitle={Proceedings of the 8th Workshop on General Purpose Processing using GPUs},
+  pages={59--69},
+  year={2015},
+  organization={ACM}
+}
+
+@article{cooley1965algorithm,
+  title={An algorithm for the machine calculation of complex {Fourier} series},
+  author={Cooley, James W and Tukey, John W},
+  journal={Mathematics of computation},
+  volume={19},
+  number={90},
+  pages={297--301},
+  year={1965},
+  publisher={JSTOR}
+}
+
+@article{frerkingjpl,
+  title={JPL Technology Readiness Level Assessment Guideline},
+  author={Frerking, Margaret A and Beauchamp, Patricia M}
+}
+
+@article{coon2006channel,
+  title={Channel and noise variance estimation and tracking algorithms for unique-word based single-carrier systems},
+  author={Coon, Justin and Sandell, Magnus and Beach, Mark and McGeehan, Joe},
+  journal={IEEE Transactions on Wireless Communications},
+  volume={5},
+  number={6},
+  pages={1488--1496},
+  year={2006},
+  publisher={IEEE}
+}
+
+@article{rice2016frame,
+  title={On frame synchronization in aeronautical telemetry},
+  author={Rice, Michael and Mcmurdie, Andrew},
+  journal={IEEE Transactions on Aerospace and Electronic Systems},
+  volume={52},
+  number={5},
+  pages={2263--2280},
+  year={2016},
+  publisher={IEEE}
+}
+
+@article{ng2007turbo,
+  title={Turbo frequency domain equalization for single-carrier broadband wireless systems},
+  author={Ng, Benjamin and Lam, Chan and Falconer, David},
+  journal={IEEE transactions on wireless communications},
+  volume={6},
+  number={2},
+  year={2007},
+  publisher={IEEE}
+}
+
+@inproceedings{sari1994frequency,
+  title={Frequency-domain equalization of mobile radio and terrestrial broadcast channels},
+  author={Sari, Hikmet and Karam, Georges and Jeanclaud, I},
+  booktitle={Global Telecommunications Conference, 1994. GLOBECOM'94. Communications: The Global Bridge., IEEE},
+  pages={1--5},
+  year={1994},
+  organization={IEEE}
+}
+
+@article{al2008single,
+  title={Single-carrier frequency domain equalization},
+  author={Al-Dhahir, Naofal and Uysal, Murat and Mheidat, Hakam},
+  year={2008}
+}
+@InProceedings{ravert2016,
+	author = {J. Ravert and M. Rice},
+	title = {On frequency offset compensation for equalized {SOQPSK}},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	month = {October},
+	year = {2016},
+	address = {Glendale, AZ}
+}
+@InProceedings{hog2016,
+	author={Hogstrom, Christopher and Nash, Christopher and Rice, Michael},
+	title = {Locating and Removing a {preamble/ASM} Sequence in Aeronautical Telemetry},
+	booktitle = {Proceedings of the International Telemetering Conference},
+	month = {October},
+	year = {2016},
+	address = {Glendale, AZ}
+}

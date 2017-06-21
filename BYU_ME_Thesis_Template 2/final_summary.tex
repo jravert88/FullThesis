@@ -1,0 +1,32 @@
+\chapter{Summary and Conclusions}
+\label{chap:final_summary}
+\section{GPU Implementation}
+Based on measured execution times of GPU kernels, multiple data-aided equalization filters were implemented for the purpose of equalizing an aeronautical telemetry channel.
+Using GPU libraries and batch processing, rather than custom designed GPU kernels, produced massive speed ups.
+Also, reformulating algorithms into frequency-domain convolution produced impressive speed ups.
+
+For implementation in one Tesla K40c and two Tesla K20c GPUs, the execution times for all equalizers met the real-time constraint.
+It was shown that the frequency-domain equalizers are the easiest to implement and have the fastest execution time.
+The CMA equalizer was shown to be the hardest to implement and has the slowest execution time.
+The execution time did not provide the CMA the opportunity to iterate many times.
+The ZF and MMSE equalizers were shown to be computationally challenging to implement, but had an acceptable execution times.
+Because data-aided equalizers are implemented for a real-time telemetry receiver system,
+the execution time results must be considered along with the bit error rate performance.
+%Despite the performance of the CMA equalizer in AWGN, the execution time per iteration does not allow the equalizer to converge in multipath.
+The FDE1 equalizer is recommended, marking the best tradeoff between performance and computational complexity.
+
+\section{Contributions}
+The contributions of this thesis are:
+\begin{enumerate}
+\item Algorithms were implemented using batch GPU libraries.
+\item GPU convolution time was reduced by using GPU libraries, batch processing, and cascading filters in the frequency domain.
+\item Algorithms were implemented using linear solver libraries to make ZF and MMSE equalizers feasible and real-time.
+\item The CMA equalizer was reformulated to leverage the speed of GPU convolution.
+\item A new ADC to was implemented to drive success of the PAQ project.
+\item Resampling polyphase filters were implemented in GPUs.
+\item A paper was presented on frequency offset compensation for equalized SOQPSK at International Telemetering. Conference (ITC) \cite{ravert2016}.
+\end{enumerate}
+
+\section{Further Work}
+The Levinson-Durbin algorithm GPU implementation only leveraged the toeplitz structure of the channel estimate auto-correlation matrix.
+A hybrid sparse Levinson-Durbin algorithm could leverage the sparseness of the channel estimate auto-correlation matrix and the vector $\hat{\mathbf{g}}$.

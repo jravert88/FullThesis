@@ -1,0 +1,285 @@
+%% Latex template for PhD dissertation or MS thesis
+%% Department of Mechanical Engineering
+%% Brigham Young University
+%% Last Modified: June 2016
+
+\documentclass[12pt,twoside]{report}% Use this line for the print version of the thesis
+%\documentclass[12pt,oneside]{report}% If you comment out the line above, and uncomment this line, it will create a file without the extra pages that the Library wants for its electronic file versions.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Setup BYU thesis format
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{byustyle}
+% Setup the byu style sheet
+\byustylesetup{%
+    %
+    %isdissertation = true,            % Uncomment this if you're doing a PhD dissertation
+    %
+    % Definitions of names needed in thesis/dissertation
+    deptname          = {Department of Electrical and Computer Engineering},    %
+    committeechairman = Michael Rice,                      %
+    committeemembera  = Brian D. Jeffs,                         %
+    committeememberb  = Karl F. Warnick,                          %
+    %graddate = April 2011,  		% Final approval month (NOT graduation month!        	
+     %
+    %Uncomment to shorten for proofreading purposes
+    %noabstract = true,         % Don't show the abstract page
+    %nouniversitypages = true,  % Don't show any of the "university pages"
+    %noacknowledgements = true, % Don't show the Acknowledgements page
+    %notableofcontents = true,  % Don't show the Table of Contents
+    %nolistoffigures = true,    % Don't show the List of Figures
+    %nolistoftables = true,     % Don't show the List of Tables
+    %nolistoflistings = true,
+    nonomenclature = true,     % Don't show the Nomenclature section - note that this section is optional
+    %notocandlists = true,      % Don't show the Table of Contents, List of Figures, or the List of Tables
+    %noheaderatall = true,      % Don't show any of the BYU Thesis header pages
+    keywords = {equalization, SOQPSK-TG, GPU, CUDA, aeronautical telemetry} % Enter your keywords
+%inside the curly braces, as you'd like them to appear on the bottom of the abstract page.
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Include other \usepackage{} statements here.
+%    Add one package at a time.
+%    Warning:  Some packages are not compatible with byuthesis.sty
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% You should turn on any of these that you think you'll need!
+
+%\usepackage[normalmargins]{savetrees} 	% prints smaller to save trees (draft only)
+\usepackage{amsmath}										%	allows for mathematical symbols
+\usepackage{mathrsfs,amsmath}
+\usepackage{amssymb}										%	defines symbol names for all the math symbols
+\usepackage{graphicx}        						% for .pdf graphics inclusion
+%\usepackage{subfigure}									%	allows for subfigures
+\usepackage{caption}
+\usepackage[calcwidth = 6in]{caption}
+\usepackage{booktabs,threeparttable}
+\usepackage{dcolumn}
+\usepackage{subcaption}	
+\usepackage{setspace}										%	change the spacing inside a document
+\usepackage{epstopdf}										%	converts a .eps to a .pdf
+\usepackage{cite}												%	allows for citations
+\usepackage{mathptmx}
+\usepackage{textcomp}
+\usepackage{float}											%	improves the interface for defining floating objects
+\usepackage{rotating}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{nicefrac}
+%\usepackage[figuresright]{rotfloat}
+%\usepackage{multirow}
+%These next two lines are for the citing with the IEEE style (leave commented for ASME)
+%\renewcommand\citepunct{], [}
+%\renewcommand\citedash{]--[}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For doing bookmarks in the PDF file
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For more info, see:
+% http://www.geocities.com/kijoo2000/latex2pdf.pdf
+% http://www.tug.org/applications/hyperref/manual.html
+\usepackage[pdftex,backref,pagebackref,plainpages=false]{hyperref}
+\hypersetup{
+    %bookmarks    = true, % Make bookmarks (default=true). This option
+                          %cannot be used after package has been loaded,
+                          %thus use like this: \usepackage[bookmarks=false]{hyperref}.
+    %
+    breaklinks   = false, % Allow link text to break across lines (default=false).
+    linktocpage  = false, % make page number, not text, be link on TOC, LOF and LOT
+    colorlinks   = false, % Color the text of links (true) or put color frames over
+    %
+    linkbordercolor  = {1 1 1}, % The color of the box around normal links (white so they won't show up)
+    citebordercolor  = {1 1 1}, % The color of the box around citations (white so they won't show up)
+                          % the links (false).
+    pdfstartview = {FitV}, % Set the startup page view. Possible options are:
+                           % FitH: Fit whole width of page
+                           % FitV: Fit whole height of page
+                           % FitB: Fit whole �Bounding Box� page
+                           % FitBH: Fit whole width of �Bounding Box� of page
+                           % FitBV: Fit whole height of �Bounding Box� of page
+    bookmarksnumbered  = true, % Put section numbers in bookmarks (default=false)
+    bookmarksopen      = true, % Open up the bookmark trees (default=false).
+    bookmarksopenlevel = 0, % Level to which bookmarks are open (default=\maxdimen).
+    bookmarkstype      = toc, % Specify which toc file to mimic (default=toc).
+    pdfpagemode        = {UseOutlines}, %  Specify how document starts when opened ({None}).
+                                        % Possible options are:,
+                                        % None: Neither bookmarks nor thumbnails are visible.
+                                        % UseOutlines: Bookmarks are visible.
+                                        % UseThumbs: Thumbnails are visible.
+                                        % FullScreen: Full-screen mode
+    pdftitle    = {GPU Implementation of Data-Aided Equalizers},
+    pdftitle    = {GPU Implementation of Data-Aided Equalizers},
+    pdfauthor   = {Jeffrey Thomas Ravert},
+    pdfcreator  = {Jeffrey Thomas Ravert},
+    pdfsubject  = {Jeffrey Thomas Ravert's Master's Thesis},
+    pdfkeywords = {equalization, SOQPSK-TG, GPU, CUDA, aeronautical telemetry},
+    pdfborder		=	{0 0 0},}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Define macros here - You may use these, or delete them, as you see fit.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstdefinestyle{myCUDAstyle} {
+	language=[ANSI]C++,
+    showstringspaces=false,
+    backgroundcolor=\color{mygray},
+    basicstyle=\lstfont{black},
+    identifierstyle=\lstfont{black},
+    keywordstyle=\lstfont{magenta},
+    numberstyle=\lstfont{black},
+    stringstyle=\lstfont{cyan},
+    commentstyle=\lstfont{yellow!30!black},
+    moredelim=[is][\lstfont{green!50!black}]{@}{@},
+    emph={
+        cudaMalloc, cudaFree,
+        cudaMallocHost, cudaFreeHost,
+        cudaMemcpyAsync, cudaMemcpy, cudaMemcpyHostToDevice, cudaMemcpyDeviceToHost,
+        cudaSuccess, cudaGetLastError, cudaGetErrorString,
+        cudaErrorMemoryAllocation, cudaError_t,
+        cudaOccupancyMaxPotentialBlockSize,
+        __global__, __shared__, __device__, __host__,
+        __syncthreads,
+        cudaEvent_t, cudaStream_t,
+        cudaEventCreate, cudaEventSynchronize, cudaEventDestroy,
+        cudaEventElapsedTime, cudaEventQuery, cudaEventRecord,
+        cudaStreamWaitEvent,
+        threadIdx, blockIdx, blockDim, gridDim,
+        cudaStream_t, cudaStreamCreate, cudaStreamDestroy,
+        cudaMemcpyDeviceToDevice, cudaMemcpyHostToHost,
+    },
+    emphstyle={\lstfont{green!50!black}},
+    breaklines=true,
+    numbers=left
+    }
+    
+    \lstdefinestyle{myCUDAstyle_inline} {
+	language=[ANSI]C++,
+    showstringspaces=false,
+    backgroundcolor=\color{white},
+    basicstyle=\lstfont{black},
+    identifierstyle=\lstfont{black},
+    keywordstyle=\lstfont{magenta},
+    stringstyle=\lstfont{cyan},
+    commentstyle=\lstfont{yellow!30!black},
+    moredelim=[is][\lstfont{green!50!black}]{@}{@},
+    emph={
+        cudaMalloc, cudaFree,
+        cudaMallocHost, cudaFreeHost,
+        cudaMemcpyAsync, cudaMemcpy, cudaMemcpyHostToDevice, cudaMemcpyDeviceToHost,
+        cudaSuccess, cudaGetLastError, cudaGetErrorString,
+        cudaErrorMemoryAllocation, cudaError_t,
+        cudaOccupancyMaxPotentialBlockSize,
+        __global__, __shared__, __device__, __host__,
+        __syncthreads,
+        cudaEvent_t, cudaStream_t,
+        cudaEventCreate, cudaEventSynchronize, cudaEventDestroy,
+        cudaEventElapsedTime, cudaEventQuery, cudaEventRecord,
+        cudaStreamWaitEvent,
+        threadIdx, blockIdx, blockDim, gridDim,
+        cudaStream_t, cudaStreamCreate, cudaStreamDestroy,
+        cudaMemcpyDeviceToDevice, cudaMemcpyHostToHost,
+    },
+    emphstyle={\lstfont{green!50!black}},
+    breaklines=true,
+    }
+
+\definecolor{codenumber}{rgb}{0.5,0.5,0.5}
+\definecolor{codekeyword}{rgb}{0.9,0.4,0.7}
+\definecolor{codeCUDA}{rgb}{1.0,0.6,0.6}
+\newcommand{\lst}[1]{\colorbox{white!20!black}{\lstinline!#1!}}
+\newcommand{\lstfont}[1]{\color{#1}\scriptsize\ttfamily}
+\newcommand{\lsttinyfont}[1]{\color{#1}\fontsize{7}{7}\ttfamily}
+\newcommand{\lstinlinefont}[1]{\color{#1}\scriptsize\ttfamily}
+\definecolor{mygray}{rgb}{0.97,0.97,0.97}
+
+\def\proof{\noindent{\it Proof: }}
+\def\QED{\mbox{\rule[0pt]{1.5ex}{1.5ex}}}
+\def\endproof{\hspace*{\fill}~\QED\par\endtrivlist\unskip}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\defeq}{\stackrel{\triangle}{=}}
+\newcommand{\re}{\mathbb{R}}																			% real numbers
+\newcommand{\OMIT}[1]{{}} 																			% omit sections of text
+\newcommand{\pd}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}} % partial derivative
+\newcommand{\superscript}[1]{\ensuremath{^\textrm{#1}}}
+\newcommand{\subscript}[1]{\ensuremath{_\textrm{#1}}}
+\newcommand{\rpkt}{\mathbf{r}_\text{pkt}}
+\newcommand{\Lpkt}{L_\text{pkt}}
+\newcommand{\Lp}{L_\text{p}}
+\newcommand{\Lasm}{L_\text{ASM}}
+\newcommand{\Ldata}{L_\text{d}}
+
+\DeclareCaptionJustification{InvertedPyramid}{\hsize=6in
+                \parindent=0pt
+                \leftskip=0pt plus.5fil
+                \rightskip=0pt plus-0.5fil
+                \parfillskip=0pt plus1fil
+                \emergencystretch=1in
+                \parshape10
+                0.00in \linewidth
+                0.025\linewidth 0.95\linewidth
+                0.05\linewidth 0.9\linewidth
+                0.075\linewidth 0.85\linewidth
+                0.1\linewidth 0.8\linewidth
+                0.125\linewidth 0.75\linewidth
+	     0.15\linewidth 0.70\linewidth
+	     0.175\linewidth 0.65\linewidth
+	     0.2\linewidth 0.60\linewidth
+	     0.225\linewidth 0.55\linewidth
+                \strut
+	} 
+\renewcommand{\TPTminimum}{3in}
+\captionsetup[table]{justification=InvertedPyramid} 
+\captionsetup[lstlisting]{justification=InvertedPyramid} 
+
+\newsavebox{\tempbox}
+\newlength{\tempwidth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To only print a few chapters without changing the reference numbers, 
+%		uncomment the chapters you want
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\includeonly{chapter1}
+%\includeonly{chapter2}
+%\includeonly{chapter3}
+%\includeonly{chapter4}
+%\includeonly{chapter5}
+%\includeonly{chapter6}
+%\includeonly{chapter7}
+%\includeonly{appendixa}
+%\includeonly{appendixb}
+%\includeonly{appendixc}
+%\includeonly{appendixd}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Define Title & Author
+% For a title of more than one line, use the \\ to break up the lines so they appear in an inverse pyramid shape.
+%Also, make sure you use title case (upper case for most of the first letters of words)
+\title{GPU Implementation of Data-Aided Equalizers}%Ira A. Fulton College\\ of Engineering and Technology}
+\author{Jeffrey Thomas Ravert}
+
+% For displaying the BYU Thesis header
+% 	This command assumes that there are documents called abstract.tex and
+% 	acknowledgements.tex that will be included in the header
+\showBYUHeader
+
+% Include chapters of the thesis here: (Note that you should open the files chapter1.tex and chapter2.tex to
+% see some of the important notes about how to do your thesis!)
+%\include{chapter1}
+%\include{chapter2}
+\include{intro-problemStatement}
+\include{systemOverview}
+\include{signalProcessingInGPUs}
+\include{equalizer_implementation_performance}
+\include{final_summary}
+
+%%%%%%%%%%%%% begin Bibliography %%%%%%%%%%%%%%%%%
+\cleardoublepage
+\bibliographystyle{ieeetran}%Change this to use a different bibliography style, such as ieeetran.
+\bibliography{refs}% Change this to use a different bibliography database file.
+
+% Include appendix sections here: (or comment these lines out to have no appendices)
+\appendix
+%\include{appendixa}
+\include{appendixb}
+
+\end{document}

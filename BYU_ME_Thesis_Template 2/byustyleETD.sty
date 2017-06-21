@@ -1,0 +1,788 @@
+% Says that we need LaTeX2e
+\NeedsTeXFormat{LaTeX2e}
+% Says what this package does
+\ProvidesPackage{byustyle}
+  [2006/05/17 BYU Style v1.0
+  Provides support for all of the required BYU Thesis/Dissertation formatting]
+
+% Requires the xkeyval package
+\RequirePackage{xkeyval}
+% For making the captions be formatted the way that I want them to be
+%\RequirePackage[margin=0pt,font=small,labelfont=bf,aboveskip=5pt,belowskip=0pt]{caption}
+%\RequirePackage{caption}
+%\captionsetup[table]{justification=centering,position=top,width=6in}
+%\captionsetup[lstlisting]{justification=centering,position=top,width=6in}
+% So we can have the abstract and acknowledgements sections only be on odd pages
+\RequirePackage{afterpage}
+%To calculate the right page number to use for the TOC
+\RequirePackage{calc}
+\RequirePackage{ifthen}
+%\RequirePackage{tocloft}
+
+\RequirePackage[titles]{tocloft}
+
+% For controlling the formatting of the document
+\define@boolkeys[BYUs]{formatting}{isdissertation}[false]{}
+% Set it so that the formatting controls will be set to their defaults if the user doesn't specify them
+\setkeys[BYUs]{formatting}{isdissertation}{}
+
+
+% Commands for getting if the name of the paper and degree
+\newcommand{\@papername}{\ifBYUs@formatting@isdissertation dissertation \else thesis \fi}
+\newcommand{\@degreename}{\ifBYUs@formatting@isdissertation Doctor of Philosophy \else Master of Science \fi}
+
+% For controlling which sections are shown
+\define@boolkeys[BYUs]{sections}{noabstract,nouniversitypages,noacknowledgements,notableofcontents,nolistoffigures,nolistoflistings,nolistoftables,notocandlists,nonomenclature}[false]
+% Set it so that the formatting controls will be set to their defaults if the user doesn't specify them
+\setkeys[BYUs]{sections}{noabstract,nouniversitypages,noacknowledgements,notableofcontents,nolistoffigures,nolistoflistings,nolistoftables,notocandlists,nonomenclature}{}
+% This one is just a convenience one for turning everything off
+\define@boolkey[BYUs]{sections}{noheaderatall}[false]{%
+  \ifBYUs@sections@noheaderatall
+    \setkeys[BYUs]{sections}{noabstract=true,nouniversitypages=true,noacknowledgements=true,notableofcontents=true,nolistoffigures,nolistoflistings=true,nolistoftables=true,notocandlists=true,nonomenclature=true}
+  \fi
+}
+
+%The next command changes what the bibliography is called.
+\renewcommand\bibname{\uppercase{References}}
+
+% For setting the Department and Committee information that needs to be filled in
+\define@cmdkeys[BYUs]{names}{deptname,committeechairman,committeemembera,committeememberb,committeememberc,committeememberd, keywords}[MISSING]
+% Set it so that the names will be set to their default values (MISSING) so everything will compile ok and that we can print warnings if the user doesn't specify everything that they should
+\presetkeys[BYUs]{names}{deptname,committeechairman,committeemembera,committeememberb,committeememberc,committeememberd, keywords}{}
+
+
+% For setting the "other" information that has valid defaults
+\define@cmdkey[BYUs]{dates}{graddate}[]{}
+\define@cmdkey[BYUs]{dates}{copyrightyear}[\number\the\year]{}
+% Set it so that the dates will be set to their defaults if the user doesn't specify them
+\setkeys[BYUs]{dates}{graddate,copyrightyear}{}
+
+
+%Process all of the options so they will kick in
+\ProcessOptions\relax
+
+
+% For the user to set everything up
+\newcommand{\byustylesetup}[1]{\setkeys[BYUs]{formatting,sections,names,dates}{#1}}
+
+
+% Formatting stuff that sets up all of the margins
+\if@twoside
+  \setlength{\oddsidemargin}{0.0in}
+  \setlength{\evensidemargin}{0in}
+  \setlength{\textwidth}{6.5in}
+\else
+  \setlength{\oddsidemargin}{0in}
+  \setlength{\evensidemargin}{0in}
+  \setlength{\textwidth}{6.5in}
+\fi
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{9in}
+
+%\setlength{\textfloatsep}{36pt}
+\setlength{\textfloatsep}{.375in plus .05in minus .05in}
+\setlength{\intextsep}{.375in plus .05in minus .05in}
+
+% Make it so that it doesn't stick figures on their own page so easily
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+% Make it so that float pages will include text more easily
+\renewcommand{\floatpagefraction}{0.75}
+\setlength{\floatsep}{.375in plus .05in minus .05in}
+
+%redefining \clearpage so that it treats it like its two sided, even though it's not
+% \def\clearpage{\clearpage\ifodd\c@page\else \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi} 
+
+%For formatting table captions in the desired way
+\newif\if@istable
+\renewenvironment{table}
+               {\@istabletrue \@float{table}}
+               {\end@float \@istablefalse}
+\renewenvironment{table*}
+               {\@istabletrue \@dblfloat{table}}
+               {\end@dblfloat \@istablefalse}
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \if@istable
+  	 \centering #1: #2 \vskip12pt\par %
+  \else
+      \sbox\@tempboxa{#1: #2}%
+      \ifdim \wd\@tempboxa >\hsize
+  	  #1: #2\par
+  	\else
+  	  \global \@minipagefalse
+   	 \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+ 	 \fi
+  \fi
+  \vskip\belowcaptionskip}
+
+% Formatting stuff for the paragraphs
+\marginparwidth 40pt
+\marginparsep 10pt
+
+% Making it so that it doesn't like to hyphenate words
+\brokenpenalty=1000
+
+% Control stuff to make it so that there aren't widows and orphans
+\clubpenalty=10000
+\widowpenalty=10000
+\raggedbottom
+
+% A macro for setting the font size
+\newcommand{\byubaselinestretch}[1]{
+  \renewcommand{\baselinestretch}{#1}
+  \normalsize
+}
+
+
+% Title Page
+\newcommand{\@titlepage}{
+  %\vspace*{0.3875in}   %for a 2" spacing from the top of the page
+  % Add a pdf bookmark so that it will show up in the PDF
+  \pdfbookmark[0]{Title Page}{titlepage}
+  % Put the title centered on the page
+  \begin{center}
+    \expandafter{\@title}
+  \end{center}
+  % Put in a space before the author
+  \vspace{0.65in}
+  % Put the author on the page
+  \begin{center}
+    \@author
+  \end{center}
+  % Put in another space
+  \vspace{0.65in}
+  \singlespacing
+  % Put in the stuff about it being submitted to BYU
+  \begin{center}
+    A \@papername submitted to the faculty of\\
+    Brigham Young University\\
+    in partial fulfillment of the requirements for the degree of\\
+    \vspace*{\baselineskip}
+    \@degreename
+  \end{center}
+  % Put in another space before the committee
+  \vspace{0.65in}
+  \begin{center}
+  \cmdBYUs@names@committeechairman, Chair\\
+  \cmdBYUs@names@committeemembera\\
+  \cmdBYUs@names@committeememberb\\
+  \ifBYUs@formatting@isdissertation
+  	\cmdBYUs@names@committeememberc\\
+	\cmdBYUs@names@committeememberd
+\fi
+  \end{center}
+  \vspace{0.65in}
+  \doublespacing
+  % Put in the end of the title page with the department info and graduation date
+  \begin{center}
+    \cmdBYUs@names@deptname\\
+    Brigham Young University\\
+    \cmdBYUs@dates@graddate
+  \end{center}
+  %Put in the copyright info.
+  \vspace{0.5in}
+  \begin{center}
+   Copyright \copyright\ \cmdBYUs@dates@copyrightyear\ \@author \\
+   All Rights Reserved
+     \end{center}
+
+  % The beginning of the document needs to be single sided, so force it to be so
+  \clearpage
+}
+
+
+%% Copyright Page
+%\newcommand{\@copyrightpage}{
+%  % Add a space that won't get removed by LaTeX
+%  \vspace*{3.3in}
+%  % Center the copyright on the page
+%  \begin{center}
+%    Copyright \copyright\ \cmdBYUs@dates@copyrightyear\ \@author \\
+%    All Rights Reserved
+%  \end{center}
+%  % The beginning of the document needs to be single sided, so force it to be so
+%  \clearpage
+%}
+
+%
+%% Signature Line Command
+%\newcommand{\@signature}[1]{
+%  \parbox[t]{3.25in}{
+%    \shortstack[l]{
+%      \vrule width 3.25in height 0.4pt\\#1
+%    }
+%  }
+%}
+%% Signature Date Command
+%\newcommand{\@sigdate}{
+%  \parbox[t]{2.25in}{
+%    \noindent\shortstack[l]{
+%      \vrule width 2.25in height 0.4pt\\Date
+%    }
+%  }
+%}
+
+
+% Committee approval page
+%\newcommand{\@committeepage}{
+%  % Put the header of the Committee Page in the center of the page
+%  \vspace*{0.3875in}   %for a 2" spacing from the top of the page
+%  \begin{center}
+%    BRIGHAM YOUNG UNIVERSITY\\
+%    \vspace*{0.35in}%0.5625
+%    GRADUATE COMMITTEE APPROVAL\\
+%    \vspace*{0.8125in}
+%    of a \@papername submitted by\\
+%    \vspace*{0.13in}
+%    \@author\\
+%    \vspace*{0.13in}
+%  \end{center}
+%  % We want this to just be single spaced
+%  \byubaselinestretch{1}
+%  % Put the little speel about what the chair is signing for
+%  This \@papername has been read by each member of the following graduate
+%  committee and by majority vote has been found to be satisfactory.
+
+%  % Put the chair's signature spot
+%  \vspace*{0.625in}
+%  \@sigdate\hfill\@signature{\cmdBYUs@names@committeechairman, Chair}
+
+%  % Put the second committee member's signature spot
+%  \vspace*{0.625in}
+%  \@sigdate\hfill\@signature{\cmdBYUs@names@committeemembera}
+
+%  % Put the third committee member's signature spot
+%  \vspace*{0.625in}
+%  \@sigdate\hfill\@signature{\cmdBYUs@names@committeememberb}
+
+%  % If it's a dissertation, then we need a fourth and fifth committee member
+%  \ifBYUs@formatting@isdissertation
+%    % Put the fourth committee member's signature spot
+%    \vspace*{0.625in}
+%    \@sigdate\hfill\@signature{\cmdBYUs@names@committeememberc}
+
+%    % Put the fifth committee member's signature spot
+%    \vspace*{0.625in}
+%    \@sigdate\hfill\@signature{\cmdBYUs@names@committeememberd}
+%  \fi
+%  % The beginning of the document needs to be single sided, so force it to be so
+%  \clearpage
+% }
+
+
+%% Department and College Approval Page
+%\newcommand{\@deptpage}{
+%  % Put Brigham Young University centered at the top of the page
+%  \vspace*{0.5625in}%for a 2" spacing from the top of the page
+%  \begin{center}
+%    BRIGHAM YOUNG UNIVERSITY
+%  \end{center}
+%  % Put in a space
+%  \vspace*{0.5in}
+%  % We want this to just be single spaced
+%  \byubaselinestretch{1}
+%  % Put in the little speel about what all these people are signing for
+%  As chair of the candidate's graduate committee, I have read the
+%  \@papername of \expandafter{\@author} in its final form and have found
+%  that (1) its format, citations, and bibliographical style are
+%  consistent and acceptable and fulfill university and department
+%  style requirements; (2) its illustrative materials including
+%  figures, tables, and charts are in place; and (3) the final
+%  manuscript is satisfactory to the graduate committee and is ready
+%  for submission to the university library.
+
+%  % Put the date of the chair's signature
+%  \vspace*{1in}
+%  \@sigdate
+
+%  % Put in the committee chair's signature
+%  \vspace*{-13pt}
+%  \hfill\@signature{\cmdBYUs@names@committeechairman\\Chair, Graduate Committee}
+
+%  % Put in the Department signature thing
+%  \vspace*{1.6in}
+%  Accepted for the Department
+
+%  % Put in the actual signature spot for the Graduate Coordinator
+%  \vspace*{0.4in}
+%  \hfill\@signature{\cmdBYUs@names@gradcoordinator\\Graduate Coordinator}
+
+%  % Put in the College signature thing
+%  \vspace*{0.4in}
+%  Accepted for the College
+
+%  % Put in the actual signature sport for the Dean
+%  \vspace*{0.4in}
+%  \hfill\@signature{\cmdBYUs@names@collegedean\\Dean, \cmdBYUs@names@collegename}
+%  % The beginning of the document needs to be single sided, so force it to be so
+%  \clearpage
+%}
+
+
+% Abstract page
+\newcommand{\@abstractpage}[1]{
+  % Add a pdf bookmark so that it will show up in the PDF
+  \pdfbookmark[0]{Abstract}{Abstract}
+  % Put the abstract header centered on the page
+  \begin{center}
+ % \vspace*{0.7375in}%for a 2" spacing from the top of the page
+ % We want the actual abstract (including title) to be single spaced
+  \singlespacing
+
+    ABSTRACT\\
+    \vspace{0.15in}
+    \afterpage{\clearpage}
+           {\expandafter{\@title}}\\
+    \vspace{0.15in}
+    \@author\\
+    \cmdBYUs@names@deptname, BYU\\
+    \@degreename
+  \end{center}
+  % We want the actual abstract (including title) to be single spaced
+  \singlespacing
+    \setlength{\parskip}{1\baselineskip}
+  % Start a new line, so that it will indent the abstract
+  \vspace*{-0.4in}
+  \par
+  % Include the abstract.tex file
+  \input{abstract}
+  \par\mbox{ }
+  \vfill
+  \noindent Keywords: \cmdBYUs@names@keywords
+      \setlength{\parskip}{0\baselineskip}
+  \clearpage
+}
+
+% Acknowledgments page
+\newcommand{\@acknowledgements}[1]{
+  % Put in a phantom section, so that hyperref doesn't whine about no place for an anchor
+  \phantomsection
+  % Add the acknowledgement to the Table of Contents
+ % \addcontentsline{toc}{chapter}{Acknowledgements}
+  % Put the header centered on the page
+  \begin{center}
+ % \vspace*{0.6375in}%for a 2" spacing from the top of the page
+  \afterpage{\clearpage}
+    ACKNOWLEDGMENTS\\[15pt]
+  \end{center}
+  \doublespacing
+  % Start a new line, so that it will indent the abstract
+  \par
+  % Include the acknowledgements.tex file
+  \input{acknowledgements}
+  \par\mbox{ }
+  \singlespacing
+%  \clearpage
+}
+
+% This changes the name of the Table of Contents from "Contents" to "Table of Contents"
+\renewcommand{\contentsname}{\uppercase{Table of Contents}}
+\renewcommand{\listtablename}{LIST OF TABLES}
+\renewcommand{\listfigurename}{LIST OF FIGURES}
+\newcommand{\listlistingname}{LIST OF LISTINGS}
+\newcommand{\jeffsname}{LIST OF LISTINGSs}
+
+% Redefine the size of the chapter label
+\renewcommand{\@makechapterhead}[1]{
+{
+  % Make the chapter title single spaced
+  \singlespacing
+  % Make it so that the Chapter headings aren't indented
+  \parindent 0pt
+  % Stick a space in so that it will be 2 inches from the top and that won't be removed by LaTeX
+  \vspace*{0.725in}
+  % I think that this just puts the word "Chapter" there, but I'm not sure
+  \ifnum \c@secnumdepth > \m@ne
+   \bf \uppercase{\MakeUppercase{\@chapapp}\ \thechapter. \hspace{1em} #1}
+    \par
+    \vspace{\baselineskip}
+  \else%
+    \bf \uppercase\expandafter{#1}
+    \par
+   \vspace{\baselineskip}
+  \fi
+  % Stick the actual chapter name in
+  % Skip two spaces
+   \vspace{\baselineskip}
+  % I have no idea what this does
+  \nobreak
+}}
+
+% Redefine the size of the chapter label
+\renewcommand{\@makeschapterhead}[1]{
+{
+  % Make the chapter title single spaced
+  \singlespacing
+  % Make it so that the Chapter headings aren't indented
+  \parindent 0pt
+  % Stick a space in so that it will be 2 inches from the top and that won't be removed by LaTeX
+  %\vspace*{0.725in}
+  % Stick the actual chapter name in
+   \begin{center}\uppercase\expandafter{#1} \end{center}
+  % Skip a line
+ % \vspace{\baselineskip}
+  % I have no idea what this does
+  \nobreak
+}}
+
+% Chapter command for use in the thesis/dissertation
+\renewcommand{\chapter}{
+  % Make it so that chapters will always start on odd pages
+  \clearpage
+  % Tell it that it needs to indent after this is done
+  \@afterindenttrue
+  % I have no idea what this does
+  \global\@topnum\z@
+  % And what this does is a mystery too
+  \secdef\@chapter\@schapter
+}
+
+% Section commands for use in the thesis/dissertation
+\renewcommand{\section}{
+  % The parameters of \@startsection are {NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE}
+  \@startsection{section}{1}{\z@}{
+    3ex plus 1ex minus .2ex}{
+    1.3ex plus .2ex}{
+    \singlespacing\normalsize\bf}
+}
+\setcounter{secnumdepth}{1}%set this to 2 or greater if you want your subsubsections numbered (not recommended).
+% Subsection commands for use in the thesis/dissertation
+\renewcommand{\subsection}{
+  % The parameters of \@startsection are {NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE}
+  \@startsection{subsection}{1}{\z@}{
+    3ex plus 1ex minus .2ex}{
+    1.3ex plus .2ex}{
+    \singlespacing\normalsize\bf}
+}
+
+% Subsubsection commands for use in the thesis/dissertation
+\renewcommand{\subsubsection}{
+  % The parameters of \@startsection are {NAME}{LEVEL}{INDENT--\z@ is shorthand for 0pt.}{BEFORESKIP}{AFTERSKIP}{STYLE}
+  \@startsection{subsubsection}{2}{\z@}{
+    3ex plus 1ex minus .2ex}{
+    1.3ex plus .2ex}{
+    \singlespacing\normalsize\bf}
+}
+
+% Format the bibliography correctly
+\renewenvironment{thebibliography}[1]
+     {\phantomsection
+     \addcontentsline{toc}{chapter}{\bibname}
+     \chapter*{\vspace*{0.7in}\protect\bf{\bibname}}%
+      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \singlespacing%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}%
+            \setlength{\itemsep}{0.25\baselineskip}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+    {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist%
+      \doublespacing}
+% This keeps track of if there are any appendixes yet, so we can reset the counters
+%\newif\ifnoappendixesyet
+%\noappendixesyettrue
+
+%%brian jensen - 3 Aug. 2004
+%%define a \protected@writenow that writes the comments immediately
+% \long\def \protected@writenow#1#2#3{%
+%         \begingroup
+%          \let\thepage\relax
+%          #2%
+%          \let\protect\@unexpandable@protect
+%          \edef\reserved@a{\immediate\write#1{#3}}%
+%          \reserved@a
+%         \endgroup
+%         \if@nobreak\ifvmode\nobreak\fi\fi
+%}
+
+%%define a \addtocontentsnow that writes the contents immediately
+%\long\def\addtocontentsnow#1#2{%
+%  \protected@writenow\@auxout
+%  {\let\label\@gobble \let\index\@gobble \let\glossary\@gobble}%
+%  {\string\@writefile{#1}{#2}}}
+
+%\renewcommand{\appendix}{\par
+%  \setcounter{chapter}{0}%
+%  \setcounter{section}{0}%
+%  \gdef\@chapapp{\appendixname}%
+%  \gdef\thechapter{\@Alph\c@chapter}
+%  \addtocontentsnow{toc}{\protect\vspace{1em}%\protect\vspace{1pt}%
+%    \hbox{\bfseries \MakeUppercase\appendixname}%
+%    \protect\addvspace{-6pt}}%
+%  }
+%The next five commands allow the table of contents page to be assigned any arbitrary number, to work around BYU's strange requirement that the first pages are single-sided and the subsequent pages are double-sided.
+\newcommand\chapteroneside{\clearpage
+                    \thispagestyle{plain}%
+                    \global\@topnum\z@
+                    \@afterindentfalse
+                    \secdef\@chapter\@schapter}
+\setlength{\cftfigindent}{0pt}  % remove indentation from figures in lof
+\setlength{\cfttabindent}{0pt}  % remove indentation from tables in lot
+
+\renewcommand\tableofcontents{%
+    \if@twocolumn
+      \@restonecoltrue\one`column
+    \else
+      \@restonecolfalse
+    \fi
+    \chapteroneside*{\contentsname
+        \@mkboth{%
+           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+    \@starttoc{toc}%
+    \if@restonecol\twocolumn\fi
+    }
+
+\renewcommand\listoftables{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \chapteroneside*{\listtablename}%
+      \@mkboth{%
+          \MakeUppercase\listtablename}%
+         {\MakeUppercase\listtablename}%
+    \@starttoc{lot}%
+    \if@restonecol\twocolumn\fi
+    }
+
+\renewcommand\listoffigures{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \chapteroneside*{\listfigurename}%
+      \@mkboth{\MakeUppercase\listfigurename}%
+              {\MakeUppercase\listfigurename}%
+    \@starttoc{lof}%
+    \if@restonecol\twocolumn\fi
+    }
+	
+%\newcommand\lstlistoflistings{%
+%    \if@twocolumn
+%      \@restonecoltrue\onecolumn
+%    \else
+%      \@restonecolfalse
+%    \fi
+%    \chapteroneside*{\lstlistlistingname}%
+%      \@mkboth{%
+%          \MakeUppercase\lstlistlistingname}%
+%         {\MakeUppercase\lstlistlistingname}%
+%    \@starttoc{lot}%
+%    \if@restonecol\twocolumn\fi
+%    }
+    
+\newcommand\lstlistoflistings{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \chapteroneside*{\listlistingname}%
+      \@mkboth{\MakeUppercase\jeffsname}%
+              {\MakeUppercase\jeffsname}%
+    \@starttoc{lol}%
+    \if@restonecol\twocolumn\fi
+    }
+
+%The next command redefines the chapter commands so that it prints Chapter 1, Chapter 2, and so on in the toc file.
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                         \refstepcounter{chapter}%
+                         \typeout{\@chapapp\space\thechapter.}%
+                         \addcontentsline{toc}{chapter}%
+                                   {\protect\numberline{\@chapapp~\thechapter\hspace{1em} }#1}%
+                    \else
+                      \addcontentsline{toc}{chapter}{#1}%
+                    \fi
+                    \chaptermark{#1}%
+                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
+                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                    \addtocontents{lol}{\protect\addvspace{10\p@}}%
+                    \if@twocolumn
+                      \@topnewpage[\@makechapterhead{#2}]%
+                    \else
+                      \@makechapterhead{#2}%
+                      \@afterheading
+                    \fi}
+
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{5.8em}%
+    \begingroup
+      \parindent \z@ \rightskip \@tocrmarg
+      \parfillskip -\@tocrmarg
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak%
+         \leaders\hbox{$\m@th \mkern \@dotsep% \hfil -> core of latex.ltx's
+           mu\hbox{\normalfont.}\mkern \@dotsep mu$}\hfill%
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+    \vspace{.2em}
+  \fi}
+
+\newcommand{\@nomenclature}[1]{%
+%  \begin{center}
+%  \vspace*{0.6375in}%for a 2" spacing from the top of the page
+%    Nomenclature\\[45pt]
+%  \end{center}
+%\cleardoubleevenpage
+\chapteroneside*{NOMENCLATURE}
+\addcontentsline{toc}{chapter}{NOMENCLATURE}
+\input{nomenclature}
+%\cleardoubleevenpage
+}
+
+% For the user to create the header
+% It would be nice if this could just be stuck into \showBYUHeader somehow
+\newcommand{\showBYUHeader}{%
+  % Turn on the BYU formatting stuff for the header
+  \pagenumbering{roman}
+  % Turn off the page numbering
+  \pagestyle{empty}
+
+  % Turn off paragraph indentation for the stuff up until the abstract
+  \parindent 0pt
+
+  % We want everything to be double spaced in the beginning
+  \byubaselinestretch{2}
+
+  % Write the university pages
+  \ifBYUs@sections@nouniversitypages
+  \else
+    \@titlepage
+   \fi
+
+  % Make the indentation for paragraphs be half of an inch
+  \parindent 0.5in
+
+  % Write the abstract in a separate .tex file and include it with the following command:
+  \ifBYUs@sections@noabstract
+  \else
+    \@abstractpage
+  \fi
+
+  % Include acknowledgments (optional) here
+  \ifBYUs@sections@noacknowledgements
+  \else
+    \@acknowledgements
+  \fi
+
+  % Turn back on the page numbering
+  \pagestyle{plain}
+
+  % Write the Table of Contents, List of Figures and List of Tables
+  \ifBYUs@sections@notocandlists
+  \else
+    % Set the parskip so that the Table of Contents and Lists will be spaced properly
+    %\setlength{\parskip}{0.5\baselineskip}
+    % Make individual entries single spaced
+    \singlespacing
+    \ifBYUs@sections@notableofcontents
+    \else
+    \if@twoside
+      \setcounter{page}{\value{page}+1}
+      \setcounter{page}{\value{page}/2}\fi
+     \ifthenelse{\isodd{\value{page}}}
+    {\def\cleardoubleevenpage{\clearpage}}
+     {\def\cleardoubleevenpage{\clearpage\if@twoside \ifodd\c@page%\else%
+\hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}}
+\setcounter{page}{2}
+      \pdfbookmark[0]{Table of Contents}{toc}
+     %\setcounter{page}{5} %You should manually change this page number if you need the TOC to start with a different page number!
+
+     		%BRIAN CHERRY FEB 08: SET THE MARGINS TO WHAT THEY SHOULD BE FOR TOC,LOT,LOF
+        	\setlength{\oddsidemargin}{0.0in}
+  			\setlength{\evensidemargin}{0.0in}
+  			\setlength{\textwidth}{6in}		
+      \tableofcontents
+      \clearpage
+    \fi
+    \ifBYUs@sections@nolistoftables
+    \else
+      \phantomsection
+      \addcontentsline{toc}{chapter}{\listtablename}
+      %Madison Fujimoto - April 10, 2017: Sets list of tables page margin to 1"
+      %This is necessary because the List of Tables is a numbered list, which are indented, causing the margin to appear as if it were 1.25"
+      %\setlength{\oddsidemargin}{-0.25in}
+  	  %\setlength{\evensidemargin}{-0.25in}
+      \listoftables
+      %Madison Fujimoto - April 10, 2017: Reset margin back to zero for subsequent pages
+      %\setlength{\oddsidemargin}{0.0in}
+  	  %\setlength{\evensidemargin}{0.0in}
+      \clearpage
+    \fi
+    \ifBYUs@sections@nolistoffigures
+    \else
+      \phantomsection
+      \addcontentsline{toc}{chapter}{\listfigurename}
+      %Madison Fujimoto - April 10, 2017: Sets list of tables page margin to 1"
+      %This is necessary because the List of Tables is a numbered list, which are indented, causing the margin to appear as if it were 1.25"
+      %\setlength{\oddsidemargin}{-0.25in}
+  	  %\setlength{\evensidemargin}{-0.25in}
+      \listoffigures
+      %Madison Fujimoto - April 10, 2017: Reset margin back to zero for subsequent pages
+      %\setlength{\oddsidemargin}{0.0in}
+  	  %\setlength{\evensidemargin}{0.0in}
+%      \clearpage
+    \fi
+	\ifBYUs@sections@nolistoflistings
+    \else
+      \phantomsection
+      \addcontentsline{toc}{chapter}{\listlistingname}
+      %Madison Fujimoto - April 10, 2017: Sets list of tables page margin to 1"
+      %This is necessary because the List of Tables is a numbered list, which are indented, causing the margin to appear as if it were 1.25"
+      %\setlength{\oddsidemargin}{-0.25in}
+  	  %\setlength{\evensidemargin}{-0.25in}
+      \lstlistoflistings
+      %Madison Fujimoto - April 10, 2017: Reset margin back to zero for subsequent pages
+      %\setlength{\oddsidemargin}{0.0in}
+  	  %\setlength{\evensidemargin}{0.0in}
+      \clearpage
+    \fi
+    \ifBYUs@sections@nonomenclature
+    \else
+       \@nomenclature
+         \par\mbox{ } 
+       \clearpage
+    \fi
+    % Reset the parskip
+    \setlength{\parskip}{0\baselineskip}
+    % The beginning of the document needs to be single sided, so force it to be so
+    %\clearpage
+  \fi
+
+  %BRIAN CHERRY FEB 08: SET THE MARGINS BACK TO WHAT THEY SHOULD BE
+%   \setlength{\oddsidemargin}{0.5in}
+%   \setlength{\evensidemargin}{0in}
+%   \setlength{\textwidth}{6in}
+
+  % Turn on the BYU formatting stuff for the main document
+  \byubaselinestretch{1.5}
+  \pagenumbering{arabic}
+}
+
+% It would be nice to just shove the call to \showBYUHeader into here, but
+% I couldn't get it to work and from what I read it might not even be possible, because
+% the \AtBeginDocument{} supposedly happens while the preamble is happening and not after
+% the actual \begin{document} has happened (they should just have a handler for each)
+%\AtBeginDocument{Testing this out} 

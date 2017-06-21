@@ -1,0 +1,512 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% systemOverview
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \cleardoublepage
+\chapter{PAQ Project}
+\label{chap:PAQ_project}
+Data-aided equalization in aeronautical telemetry has been studied and tested by the Preamble Assisted Equalization (PAQ) project \cite{paq-phase1-report:2014}.
+Under PAQ, a system was built that compared five data-aided equalizers to blind equalization and no equalization.
+Laboratory tests were performed using a static RF multipath channel emulator and a noise source to produce bit error rate (BER) curves.
+The five data-aided equalizers studied are:
+\begin{itemize}
+\item zero-forcing (ZF) equalizer,
+\item minimum mean-square error (MMSE) equalizer,
+\item MMSE-initialized constant modulus algorithm (CMA) equalizer,
+\item frequency domain equalizer one (FDE1), and
+\item frequency domain equalizer two (FDE2).
+\end{itemize}
+Bit error rate statistics were used as the figure or merit for the equalization algorithms.
+\begin{figure}
+	\centering\includegraphics[width=12.33in/100*50]{figures/intro/received1.pdf}
+	\caption{The received signal has multipath interference, frequency offset, phase offset, and additive white Gaussian noise. The received signal is down-converted, filtered, sampled, and resampled to produce the sample sequence $r(n)$.}
+	\label{fig:received1}
+\end{figure}
+
+\section{System Overview}
+The system is summarized by the block diagram in Figure \ref{fig:received1}.
+%The bit stream $\mathbf{b}$ modulates a SOQPSK-TG carrier.
+To enable data-aided equalization, the PAQ bit stream has a packetized structure shown in Figure \ref{fig:packetStructure_intro}. 
+Each packet comprises a preamble (defined in the iNET standard \cite{inet-ran:2012}), 
+the attached sync marker (ASM), and a $6144$-bit data field. The preamble and ASM bits
+form a known sequence of bits, together called the pilot bits, that are periodically inserted every $6144$ bits.
+The iNET preamble comprises eight repetitions of the 16-bit sequence $\text{CD98}_\text{hex}$ and the ASM field is
+\begin{equation}
+\text{034776C7272895B0}_\text{hex}.
+\end{equation}
+The data payload is a known length-$(2^{11} - 1)$ PN sequence.
+Each packet contains $128$ preamble bits, $64$ ASM bits and $6{,}144$ data bits making each iNET packet $6{,}336$ bits.
+The data bit rate is $10$ Mbits/s. 
+After preamble and ASM insertion, the bit rate presented to the modulator is $10.3125$ Mbits/s.
+
+After modulation, the transmitted signal experiences multipath interference modeled as an LTI system with the channel impulse response $h(t)$.
+The transmitted signal also experiences a frequency offset $\omega_0$, a phase offset $\phi$ and additive white Gaussian noise $w(t)$.
+The received signal is down-converted, filtered, sampled at $93\nicefrac{1}{3}$ Msamples/second by the ADC, and down-converted to baseband and resampled by $\nicefrac{99}{448}$ using a polyphase filterbank based on the principles outlined in \cite[chap. (9)]{rice:2009}.
+The result is $r(n)$, a sampled version of the complex-valued lowpass equivalent waveform at a sample rate of $20.625$ Msamples/second or $2$ samples/bit.
+\begin{figure}
+	\centering\includegraphics[width=9.47in/100*55]{figures/intro/packetSturcture.pdf}
+	\caption{A diagram showing each PAQ packet comprises a preamble, ASM, and a data field.}
+	\label{fig:packetStructure_intro}
+\end{figure}
+
+\section{Hardware Overview}
+\label{sec:hardware}
+A block diagram of PAQ physical system is shown in Figure \ref{fig:hardwareblock}.
+\begin{figure}
+	\centering\includegraphics[width=11.58in/100*55]{figures/systemOverview/hardwareblock.pdf}
+	\caption{A block diagram of the physical PAQ hardware. The components inside the rack mounted server are in the dashed box. All the components in the dashed and dotted box are housed in a rack mounted case.}
+	\label{fig:hardwareblock}
+\end{figure}
+A picture of the physical components is shown in Figure \ref{fig:HostSystem}.
+\begin{figure}
+	\centering\includegraphics[scale=0.55]{figures/systemOverview/HostSystem.jpg}
+	\caption{A picture of the physical PAQ hardware refrencing blocks from Figure \ref{fig:hardwareblock}. Right: Components in the dashed and dotted box. Left: Components in the dashed box. Note that the T/M Receiver is not pictured.}
+	\label{fig:HostSystem}
+\end{figure}
+The major components, and their functions are summarized as follows:
+\begin{itemize}
+	\item The \textbf{T/M receiver} down-converts the received signal from L- or C-band RF to 70 MHz IF.
+	The IF filter plays the role of an anti-aliasing filter.
+	%
+	\item The \textbf{ADC} produces 14-bit samples of the real-valued bandpass IF signal.
+	The sample rate is $93\nicefrac{1}{3}$ Msamples/s.
+	The samples are transferred to the host CPU via the PCIe bus.
+	%
+	\item The \textbf{host CPU} initiates memory transfers between itself and the ADC, GPUs and FPGA via the PCIe 	bus. 
+	The host CPU also launches the digital signal processing algorithms on the GPUs.
+	%
+	\item The three \textbf{GPUs} are where the detection, estimation, equalization and demodulation resides.
+%	While the CPU has one to eight powerful processors, GPUs have thousands of small less powerful processors that work in parallel. The signal processing is done in GPUs rather than FPGAs or a CPU because programming GPUs is faster and easier than programming FPGAs and CPUs do not prosess the required processing power.
+	%
+	\item The bit error rate tester (\textbf{BERT}) counts the errors in each bit stream by comparing the 		streams to the transmitted PN sequence.
+	%
+	\item The \textbf{FPGA} is the interface between the host CPU and the BERT. After the GPUs produce bit decisions, the host CPU transfers the decisions from the GPUs to the FPGA via the PCIe bus. The FPGA then clocks the bits out to the BERT for BER testing.
+	%
+	\item The \textbf{T/M Receiver \& Demodulator} demodulates the RF signal outputting two bit streams for blind equalization and no equalization for BER comparison.
+	%
+	\item The \textbf{rack mounted server} is a high powered computer that houses an ADC, a FPGA and three GPUs 			slotted into a 32 pin PCIe bus.
+\end{itemize}
+%A picture of the rack mounted physical system is shown in Figure \ref{fig:rack}.
+%\begin{figure}
+%	\centering\includegraphics[scale=0.55]{figures/systemOverview/rack.jpg}
+%	\caption{A picture of the physical PAQ hardware. Note that the T/M Receiver is not pictured.}
+%	\label{fig:rack}
+%\end{figure}
+%A picture of the components inside the rack mounted server is shown in Figure \ref{fig:rack}.
+%\begin{figure}
+%	\centering\includegraphics[scale=0.55]{figures/systemOverview/server.jpg}
+%	\caption{A pictureof the components inside the rack mounted server.}
+%	\label{fig:server}
+%\end{figure}
+
+\section{Digital Signal Processing}
+\label{sec:signalProcessing}
+A high-level digital signal processing flow and notation is shown in Figure \ref{fig:fullSystem}.
+The sequence $r(n)$ represents a continuous stream of samples.
+Because the frequency offset, channel, and noise variance are estimated using the preamble and ASM, the first step is to find the samples corresponding to the preamble in the received sample sequence $r(n)$.
+The preamble detector identifies the sample indices in the sequence $r(n)$ corresponding to the starting position of each occurrence of the waveform samples corresponding to the preamble.
+To simplify the notation used to describe the signal processing algorithms, we represent the output of the preamble detector by the vector $\mathbf{r}_\text{p}$, a sequence of $\Lpkt$ samples starting with the waveform samples corresponding to the preamble and ASM bits.
+In this way the signal processing algorithms are described on a packet-by-packet basis.
+
+Starting with the block diagram in Figure \ref{fig:fullSystem}, the preamble samples are used first to estimate the frequency offset.
+The estimated frequency offset $\hat{\omega}_0$ rads/sample is then used to ``de-rotate'' the vector of samples $\mathbf{r}_\text{p}$ to produce a vector denoted $\tilde{\mathbf{r}}$.
+The de-rotated preamble and ASM samples in the vector $\tilde{\mathbf{r}}$ are used to estimate the channel $\hat{\mathbf{h}}$ and noise variance $\hat{\sigma}^2_w$ as shown.
+\begin{sidewaysfigure}
+	\includegraphics[width=15.72in/100*55]{figures/eq_equations/fullSystem.pdf}
+	\caption{A block diagram of the digital signal processing flow and notation in PAQ.}
+	\label{fig:fullSystem}
+\end{sidewaysfigure}
+%\begin{figure}
+%	\centering\includegraphics[width=8.75in/100*55]{figures/intro/estimators.pdf}
+%	\caption{A block diagram of the estimators in PAQ.}
+%	\label{fig:estimators}
+%\end{figure}
+
+The estimates are used to compute the equalizer filter coefficients as illustrated in Figure \ref{fig:thisThesisBlock}.
+The figure shows five independent branches,
+each branch computing an equalizer filter.
+On the top three branches, lower case boldface variables $\mathbf{c}$, with a subscript, represent the impulse responses of the FIR equalizer filters. 
+On the lower two branches, the upper case boldface $\mathbf{C}$ with a subscript represent the FFT-domain transfer function of the equalizers.
+In all five cases, the equalizer and a detection filter (described below) are applied to $\tilde{\mathbf{r}}$.
+The result processed by a symbol-by-symbol OQPSK detector to produce bit decisions for each equalizer.
+\begin{figure}
+	\centering\includegraphics[width=10.45in/100*55]{figures/intro/thisThesisBlock5.pdf}
+	\caption{A block diagram of the computation and application of the equalizer and detection filters. The bold box emphasizes the focus of this thesis.}
+	\label{fig:thisThesisBlock}
+\end{figure}
+
+The GPUs in Figure \ref{fig:hardwareblock} and \ref{fig:HostSystem} perform all the digital signal processing in parallel.
+To introduce as much parallelism as possible, the received samples are processed in a batch comprising $39{,}321{,}600$ samples. 
+At $20.625$ Msamples/second, each batch of $39{,}321{,}600$ samples represents $1907$ milliseconds of data.
+Each batch has at most $3104$ $12{,}672$-sample iNET packets.%
+\footnote{Because the batch length ($39{,}321{,}600$ samples) is not a multiple of the packet length ($12{,}672$), each batch comprises $3103$ or $3104$ packets.}
+The GPU processes $3104$ packets in parallel by leveraging batched processing.
+To meet the real-time requirement, all processing must be completed in less than $1907$ ms.
+
+This thesis illustrates how the five PAQ data-aided equalizers were computed and applied in GPUs.
+The bold box in Figure \ref{fig:thisThesisBlock} emphasizes processing blocks on which this thesis focuses.
+Even though the GPUs process $3104$ packets in parallel, the signal processing algorithms are described on a
+packet-by-packet basis.
+
+\subsection{Preamble Detection}
+\label{sec:pd}
+To compute the impulse responses or transfer functions of the five data-aided equalizers, an estimate of the channel and noise variance must be available.
+The required estimates are derived from the received waveform samples corresponding to the preamble and ASM bits.
+Consequently, the location of the waveform samples corresponding to the preamble and ASM bits must be found.
+The preamble detector identifies the sample indices in the sequence $r(n)$ corresponding to the starting position of each occurrence of the waveform samples corresponding to the preamble.
+The preamble detector computes the function $L(n)$ for each sample in the batch.
+Peaks in $L(n)$ identify the starting indices of the waveform samples corresponding to each occurrence of the preamble bits.
+The function $L(n)$ is given by \cite{preamble_detector}
+\begin{equation}
+	L(n) = \sum_{m=0}^{7}
+		\left[ I^2(n,m) + Q^2(n,m) \right],
+	\label{eq:gpu-L-4}
+\end{equation}
+where
+\begin{multline}
+	I(n,m) \approx \sum_{\ell\in\mathcal{L}_1}r_R(\ell+32m+n)
+			- \sum_{\ell\in\mathcal{L}_2}r_R(\ell+32m+n)
+			+ \sum_{\ell\in\mathcal{L}_3}r_I(\ell+32m+n)
+			\\- \sum_{\ell\in\mathcal{L}_4}r_I(\ell+32m+n)
+			+ 0.7071 \left[
+				\sum_{\ell\in\mathcal{L}_5}r_R(\ell+32m+n)
+				- \sum_{\ell\in\mathcal{L}_6}r_R(\ell+32m+n)
+			\right. \\
+			\left.
+				+ \sum_{\ell\in\mathcal{L}_7}r_I(\ell+32m+n)
+				- \sum_{\ell\in\mathcal{L}_8}r_I(\ell+32m+n)
+			\right],
+	\label{eq:gpu-L-pedone-geoghegan-2}
+\end{multline}
+and
+\begin{multline}
+	Q(n,m) \approx \sum_{\ell\in\mathcal{L}_1}r_I(\ell+32m+n)
+			- \sum_{\ell\in\mathcal{L}_2}r_I(\ell+32m+n)
+			\\
+			- \sum_{\ell\in\mathcal{L}_3}r_R(\ell+32m+n)
+			+ \sum_{\ell\in\mathcal{L}_4}r_R(\ell+32m+n)
+			\\
+			+ 0.7071 \left[
+				\sum_{\ell\in\mathcal{L}_5}r_I(\ell+32m+n)
+				- \sum_{\ell\in\mathcal{L}_6}r_I(\ell+32m+n)
+			\right. \\
+			\left.
+				- \sum_{\ell\in\mathcal{L}_7}r_R(\ell+32m+n)
+				+ \sum_{\ell\in\mathcal{L}_8}r_R(\ell+32m+n)
+			\right],
+		\label{eq:gpu-L-pedone-geoghegan-3}
+\end{multline}
+with
+\begin{equation}
+	\begin{split}
+	\mathcal{L}_1 &= \{ 0, 8, 16, 24 \}\\
+	\mathcal{L}_2 &= \{ 4, 20 \}\\
+	\mathcal{L}_3 &= \{ 2, 10, 14, 22 \}\\
+	\mathcal{L}_4 &= \{ 6, 18, 26, 30 \}\\
+	\mathcal{L}_5 &= \{ 1, 7,  9, 15, 17, 23, 25, 31 \}\\
+	\mathcal{L}_6 &= \{ 3, 5, 11, 12, 13, 19, 21, 27, 28, 29 \}\\
+	\mathcal{L}_7 &= \{ 1, 3,  9, 11, 12, 13, 15, 21, 23 \}\\
+	\mathcal{L}_8 &= \{ 5, 7, 17, 19, 25, 27, 28, 29, 31 \}.
+\end{split}
+\label{eq:gpu-L-pedone-geoghegan-4}
+\end{equation}
+The index of a peak in $L(n)$ indicates the start of a preamble.
+Suppose $L(i)$ is a peak (i.e., $i$ is the index of the peak).
+Then the vector $\mathbf{r}_\text{p}$ in Figure \ref{fig:fullSystem} is 
+\begin{equation}
+\mathbf{r}_\text{p} = 
+\begin{bmatrix}
+r(i) \\ 
+\vdots \\ 
+r(i+\Lpkt-1)
+\end{bmatrix}
+=
+\begin{bmatrix}
+r_\text{p}(0) \\ 
+\vdots \\ 
+r_\text{p}(\Lpkt-1)
+\end{bmatrix}.
+\end{equation}
+The first $L_\text{p} = 256$ samples of $\mathbf{r}_\text{p}$ correspond to the preamble bits and the following
+$L_\text{ASM} = 128$ samples of $\mathbf{r}_\text{p}$ correspond to the ASM bits.
+
+
+\subsection{Frequency Offset Compensation}
+\label{sec:freq_offset_comp}
+The preamble sequence comprises eight copies of the bit sequence CD98\textsubscript{hex}.
+Consequently, the waveform samples $r_\text{p}(0), \ldots , r_\text{p}(L_\text{p}-1)$ comprise 
+eight copies of $L_q=32$ SOQPSK-TG waveform samples corresponding to CD98\textsubscript{hex}.%
+\footnote{This statement is only approximately true. 
+Because of the memory in SOQPSK-TG, the first block of $L_q$ samples is a function of both the bit sequence CD98\textsubscript{hex} and the seven unknown bits preceding the first occurrence of CD98\textsubscript{hex}.}
+The frequency offset estimator shown in Figure \ref{fig:fullSystem} is the estimator taken from \cite[eq. (24)]{rice2014frequency}.
+With the notation adjusted slightly, the frequency offset estimate is
+\begin{equation}
+	\hat{\omega}_0 = \frac{1}{L_q} \arg\left\{ \sum_{n=i+2L_q}^{i+7L_q-1} r_\text{p}(n)r_\text{p}^\ast(n-L_q)\right\}
+	\quad
+\text{for} \;
+i=1,2,3,4,5.
+	\label{eq:jeff-ML-w-final3}
+\end{equation}
+The frequency offset is estimated for every packet or each vector of samples $\mathbf{r}_\text{p}$ in the batch.
+Frequency offset compensation is performed by de-rotating the received samples by $-\hat{\omega}_0$:
+\begin{equation}
+	\tilde{r}(n) = r_\text{p}(n) e^{-j\hat{\omega}_0n}.
+	\label{eq:frequency_compensation}
+\end{equation}
+Equations \eqref{eq:jeff-ML-w-final3} and \eqref{eq:frequency_compensation} are easily implemented into GPUs. 
+
+\subsection{Channel Estimation}
+\label{sec:channel_estimation}
+Let the SOQPSK-TG samples corresponding to the preamble and ASM bits be
+\begin{equation}
+\mathbf{p} = 
+\begin{bmatrix}
+p(0) \\
+p(1) \\
+\vdots \\
+p(L_\text{P} + L_\text{ASM}-1)
+\end{bmatrix}.
+\label{eq:preamble_ASM}
+\end{equation}
+The multipath channel is defined by the impulse response 
+\begin{equation}
+\mathbf{\hat{h}} = 
+\begin{bmatrix}
+\hat{h}(-N_1) \\ \vdots \\ \hat{h}(0) \\ \vdots \\ \hat{h}(N_2)
+\end{bmatrix}.
+\end{equation}
+Note that at $2$ samples/bit, the complex-valued lowpass equivalent channel impulse response is assumed to have a non-causal component comprising $N_1$ samples and a causal component comprising $N_2$ samples.
+Figure \ref{fig:channelExample} shows the full discrete-time $L_h = N_1+N_2+1$ sample channel.
+\begin{figure}
+	\centering\includegraphics[width=5.5in/100*55]{figures/intro/channelExample.pdf}
+	\caption{An illustration of the discrete-time channel of length $N_1+N_2+1$ with a non-causal component comprising $N_1$ samples and a causal component comprising $N_2$ samples.}
+	\label{fig:channelExample}
+\end{figure} \newline
+The ML estimate is \cite[eq. 8]{rice-afran-saquib-cole-rhodes-moazzami:2014} 
+\begin{equation}
+\hat{\mathbf{h}} = \underbrace{ \left( \mathbf{X}^\dag\mathbf{X} \right)^{-1} \mathbf{X}^\dag}_{\mathbf{X}_\text{lpi}}\tilde{\mathbf{r}}_x,
+\end{equation}
+where 
+\begin{equation}
+\mathbf{X} = 
+		\begin{bmatrix}
+		p(N_2)							& 								& 		&  			\\
+		\vdots 							& p(N_2)						& 		&  			\\
+		p(L_\text{p}+L_\text{ASM}-N_1)	&\vdots							& \ddots&  			\\
+										& p(L_\text{p}+L_\text{ASM}-N_1)&  		& p(N_2)  	\\
+		 								&  								&  		& \vdots 	\\
+		 								&  	   							&  		& p(L_\text{p}+L_\text{ASM}-N_1)\\
+	\end{bmatrix},
+	\label{eq:X}
+\end{equation}
+is the $(L_\text{p}+L_\text{ASM}-N_1-N_2)\times(N_1+N_2+1)$ convolution matrix formed from 
+the SOQPSK-TG waveform samples corresponding to the preamble and ASM bits and $\tilde{\mathbf{r}}_x$ is the vector of de-rotated received waveform samples corresponding to the ``middle'' portion of the preamble and ASM bits:
+\begin{equation}
+\tilde{\mathbf{r}}_x = 
+\begin{bmatrix}
+\tilde{r}(N_2) \\
+\tilde{r}(N_2+1) \\
+\vdots \\
+\tilde{r}(L_\text{P} + L_\text{ASM}-N_1)
+\end{bmatrix}.
+\label{eq:r_x}
+\end{equation}
+The $(N_1+N_2+1)\times(L_\text{p}+L_\text{ASM}-N_1-N_2)$ matrix $\mathbf{X}_\text{lpi}$ is the left pseudo-inverse of $\mathbf{X}$.
+Note that $\mathbf{X}_\text{lpi}$ is independent of the data and therefore may be computed once and stored.
+The matrix vector multiplication $\mathbf{X}_\text{lpi} \tilde{\mathbf{r}}_x$ is implemented simply and efficiently in GPUs.
+
+
+\subsection{Noise Variance Estimation}
+\label{sec:noise_variance_estimation}
+The noise variance estimator is \cite[eq. 9]{rice-afran-saquib-cole-rhodes-moazzami:2014}
+\begin{equation}
+	\hat{\sigma}_w^2 = \frac{1}{2\rho} \left| \tilde{\mathbf{r}}_x-\mathbf{X}\hat{\mathbf{h}}\right|^2,
+	\label{eq:ML-s2-final3}
+\end{equation}
+where
+\begin{equation}
+	\rho = {\rm Trace} \left\{ \mathbf{I} -  \mathbf{X}\left(\mathbf{X}^\dag\mathbf{X}\right)^{-1}\mathbf{X}^\dag \right\},
+\end{equation}
+where $\tilde{\mathbf{r}}_x$ is given by Equation \eqref{eq:r_x} and $\mathbf{X}$ is given by Equation \eqref{eq:X}.
+Equation \eqref{eq:ML-s2-final3} is easily implemented into GPUs.
+
+\subsection{Equalizers}
+\label{sec:equalizer_eq}
+
+\subsubsection{Zero-Forcing Equalizer}
+The ZF equalizer is an FIR filter defined by the $L_\text{eq}=L_1+L_2+1$ coefficients
+\begin{equation}
+\mathbf{c}_\text{ZF} = 
+\begin{bmatrix}
+c_\text{ZF}(-L_1) \\ \vdots \\ c_\text{ZF}(0) \\ \vdots \\ c_\text{ZF}(L_2)
+\end{bmatrix}.
+\end{equation}
+The filter coefficients are the solution to \cite{paq-phase1-report:2014}
+\begin{equation}
+\mathbf{R}_{\hat{h}} \mathbf{c}_\text{ZF} = \hat{\mathbf{g}},
+\label{eq:start_here_ZF_MDR}
+\end{equation}
+where
+\begin{equation}
+\mathbf{R}_{\hat{h}} = 
+		\begin{bmatrix}
+		r_{\hat{h}}(0)			& r^\ast_{\hat{h}}(1)	& \cdots 	& r^\ast_{\hat{h}}(L_{eq}-1)  	\\
+		r_{\hat{h}}(1) 			& r_{\hat{h}}(0)		& \cdots 	& r^\ast_{\hat{h}}(L_{eq}-2)  	\\
+		\vdots	 				& \vdots				& \ddots 	&  								\\
+		r_{\hat{h}}(L_{eq}-1)	& r_{\hat{h}}(L_{eq}-2)	& \cdots	& r_{\hat{h}}(0)  			
+	\end{bmatrix},
+	\label{eq:R_h_MDR}
+\end{equation}
+\begin{equation}
+\hat{\mathbf{g}} = 
+\begin{bmatrix} \hat{h}^\ast(L_1) \\ \vdots \\ \hat{h}^\ast(0) \\ \vdots \\ \hat{h}^\ast(-L_2)  \end{bmatrix},
+\label{eq:g_MDR}
+\end{equation}
+and
+\begin{equation}
+r_{\hat{h}}(k) = \sum_{n=-N_1}^{N_2} \hat{h}(n) \hat{h}^\ast(n-k).
+\label{eq:sample_autocorrelation_ZF_MDR}
+\end{equation}
+
+\subsubsection{MMSE Equalizer}
+The MMSE equalizer is an FIR filter defined by the $L_\text{eq}=L_1+L_2+1$ coefficients
+\begin{equation}
+\mathbf{c}_\text{MMSE} = 
+\begin{bmatrix}
+c_\text{MMSE}(-L_1) \\ \vdots \\ c_\text{MMSE}(0) \\ \vdots \\ c_\text{MMSE}(L_2)
+\end{bmatrix}.
+\end{equation}
+The filter coefficients are the solution to \cite{paq-phase1-report:2014}
+\begin{equation}
+\mathbf{R} \mathbf{c}_\text{MMSE} = \hat{\mathbf{g}},
+\label{eq:start_here_MMSE_MDR}
+\end{equation}
+where
+\begin{equation}
+\mathbf{R} = 
+\mathbf{R}_{\hat{h}} + \hat{\sigma}^2_w \mathbf{I},
+\end{equation}
+$\mathbf{R}_{\hat{h}}$ is given by \eqref{eq:R_h_MDR}, $\hat{\sigma}^2_w$ is given by \eqref{eq:ML-s2-final3}, and $\hat{\mathbf{g}}$ is given by \eqref{eq:g_MDR}.
+
+\subsubsection{Constant Modulus Algorithm Equalizer}
+The CMA equalizer is an adaptive FIR filter where the $L_\text{eq}=L_1+L_2+1$ coefficients at the $b$-th iteration are
+\begin{equation}
+\mathbf{c}_\text{CMA}^{(b)} = 
+\begin{bmatrix}
+c_\text{CMA}^{(b)}(-L_1) \\ \vdots \\ c_\text{CMA}^{(b)}(0) \\ \vdots \\ c_\text{CMA}^{(b)}(L_2)
+\end{bmatrix}.
+\end{equation}
+The equalizer output at the $b$-th iteration is 
+\begin{equation}
+\hat{\mathbf{s}}^{(b)} = 
+\mathbf{c}_\text{CMA}^{(b)} \ast \tilde{\mathbf{r}}.
+\end{equation}
+Note that in this implementation the CMA filter coefficients are constant for the duration of a packet \cite{rice-afran-saquib-cole-rhodes-moazzami:2014}.
+The filter coefficients are updated on a packet-by-packet basis using a steepest descent algorithm as follows:
+\begin{equation}
+\mathbf{c}_\text{CMA}^{(b+1)} = \mathbf{c}_\text{CMA}^{(b)}-\mu \nabla J,
+\label{eq:steepest}
+\end{equation}
+where
+\begin{equation}
+	\nabla J = \frac{2}{L_{pkt}} \sum_{n=0}^{L_{pkt}-1}
+	\left[ \vphantom{\displaystyle\sum}  \hat{s}^{(b)}(n) \left( \hat{s}^{(b)}(n)\right)^\ast - 1 \right]
+	\hat{s}^{(b)}(n)  \tilde{\mathbf{r}}^\ast(n).
+\label{eq:DelJcma-approxr_MDR}
+\end{equation}
+In Equation \eqref{eq:DelJcma-approxr_MDR}, $\hat{s}^{(b)}(n)$ is the $n$-th element of the vector $\hat{\mathbf{s}}^{(b)}$ and
+\begin{equation}
+\tilde{\mathbf{r}}^\ast(n) = \begin{bmatrix} \tilde{r}^\ast(n+L_1) \\ \vdots \\ \tilde{r}^\ast(n) \\ \vdots \\ \tilde{r}^\ast(n-L_2) \end{bmatrix}.
+\label{eq:r_tilde_n}
+\end{equation}
+The CMA equalizer filter coefficients are initialized by the MMSE equalizer filter coefficients
+\begin{equation}
+\mathbf{c}_\text{CMA}^{(0)} = \mathbf{c}_\text{MMSE}.
+\label{eq:CMA_init}
+\end{equation}
+
+\subsubsection{Frequency Domain Equalizer One}
+Frequency-domain equalization leverages the efficiency of the FFT algorithm to perform equalization filtering in the FFT domain.
+The difference between frequency-domain equalization and applying the previous three equalizer filters in the FFT domain is that the frequency-domain equalizer is computed directly in the FFT domain.
+To enable this, some provision must be made for the fact that point-by-point multiplication in the FFT domain corresponds to circular convolution in the time domain.
+This provision is most often in the form of a cyclic prefix prepended to the data packet \cite{sari1994frequency,ng2007turbo,al2008single,proakis-salehi:2008}.
+Even though the PAQ format does not include any special provision for frequency-domain equalization such as a cyclic prefix, frequency-domain equalization is still possible using the ideas described by Coon et al \cite{coon-sandell-beach-mcgeehan:2006}.
+Because of the repetitive nature of the preamble sequence, the second half of the preamble bits at the beginning of the packet are the same the first half of the preamble bits following the packet.
+Consequently, the second half of the preamble bits at the beginning of the packet form a cyclic prefix for the block comprising the ASM, the data, and the first half of the preamble following the packet as illustrated in Figure \ref{fig:cyclicPrefix_MDR}.
+\begin{figure}
+	\centering\includegraphics[width=10.63in/100*55]{figures/eq_equations/cyclicPrefix.pdf}
+	\caption{A diagram showing how the iNET packet is used as a cyclic prefix.}
+	\label{fig:cyclicPrefix_MDR}
+\end{figure}
+
+The FFT domain transfer function of FDE1 is \cite[eq. (11)]{williams2013linear}
+\begin{equation}
+C_\text{FDE1}(e^{j\omega_k}) = \frac{\hat{H}^\ast(e^{j\omega_k})}  {|\hat{H}(e^{j\omega_k})|^2  +  \frac{1}{\hat{\sigma}^2_w}} \quad
+\omega_k = \frac{2\pi}{N_\text{FFT}} \;
+\text{for} \;
+k=0,1,\cdots,N_\text{FFT}-1,
+\label{eq:FDE1_MDR}
+\end{equation}
+where $N_\text{FFT} = 2^u = 16{,}384$, where $u = {\left\lceil \log_2{\left(\Lpkt\right)}  \right\rceil} = 14$,
+where $\left\lceil x  \right\rceil$ means the smallest integer greater than or equal to $x$.
+In Equation \eqref{eq:FDE1_MDR}, $\hat{H}(e^{j\omega_k})$ is the $k$-th element of the length-$N_\text{FFT}$ FFT of $\mathbf{\hat{h}}$ and $\hat{\sigma}^2_w$ is given by \eqref{eq:ML-s2-final3}.
+FDE1 is the MMSE equalizer formulated in the frequency domain, where power spectral density of SOQPSK-TG is a constant.
+
+\subsubsection{Frequency Domain Equalizer Two}
+The FFT domain transfer function of FDE1 is \cite[eq. (12)]{williams2013linear}
+\begin{equation}
+C_\text{FDE2}(e^{j\omega_k}) = \frac{\hat{H}^\ast(e^{j\omega_k})}  {|\hat{H}(e^{j\omega_k})|^2  +  \frac{\Psi(e^{j\omega_k})}{\hat{\sigma}^2_w}} \quad
+\omega_k = \frac{2\pi}{N_\text{FFT}} \;
+\text{for} \;
+k=0,1,\cdots,N_\text{FFT}-1,
+\label{eq:FDE2_MDR}
+\end{equation}
+where $N_\text{FFT} = 2^u = 16{,}384$, where $u = {\left\lceil \log_2{\left(\Lpkt\right)}  \right\rceil} = 14$,
+where $\left\lceil x  \right\rceil$ means the smallest integer greater than or equal to $x$.
+In Equation \eqref{eq:FDE2_MDR}, $\hat{H}(e^{j\omega_k})$ is the $k$-th element of the length-$N_\text{FFT}$ FFT of $\mathbf{\hat{h}}$ and $\hat{\sigma}^2_w$ is given by \eqref{eq:ML-s2-final3}.
+Like FDE1, FDE2 is the MMSE equalizer formulated in the frequency domain.
+The difference is FDE2 uses an estimate of the true power spectral density of SOQPSK-TG.
+The SOQPSK-TG power spectral density $\Psi(e^{j\omega_k})$ is illustrated in Figure \ref{fig:SOQPSK_spectrum_MDR}.
+$\Psi(e^{j\omega_k})$ was estimated using Welch's method of periodogram averaging based on length-$N_\text{FFT} $ FFTs of SOQPSK-TG sampled at $2$ samples/bit, the Blackman window, and $50\%$ overlap.
+\begin{figure}
+%	\centering\includegraphics[width=5in]{figures/eq_equations/FDE2_spectrum_PSI.eps}
+		\centering\includegraphics[width=5in]{figures/myPNGs/FDE2_spectrum_PSI.png}
+	\caption{SOQPSK-TG power spectral density.}
+	\label{fig:SOQPSK_spectrum_MDR}
+\end{figure}
+
+\subsection{Symbol-by-Symbol Detector}
+\label{sec:oqpsk_detector}
+A block diagram of the symbol-by-symbol detector is shown in Figure \ref{fig:OQPSK}.
+Note that the detection filter is applied with the equalizer filter in Figure \ref{fig:thisThesisBlock}.
+Symbol-by-symbol detection comprises a detection filter operating at $2$ samples/bit, a phase lock loop (PLL) operating at $1$ sample/bit, and a decision device also operating at $1$ sample/bit.
+Before the symbols are detected, the equalized samples $\hat{s}(n)$ are passed through the detection filter then down-sampled by $2$. 
+The detection filter $\mathbf{d}$ is the length $L_\text{d} = 23$ FIR filter whose response is shown in Figure \ref{fig:detectionFilter} \cite[Fig. 3]{perrins:2013}.
+\begin{figure}
+%	\centering\includegraphics[width=5in]{figures/eq_equations/df.eps}
+%	\centering\includegraphics[width=4.25in]{figures/eq_equations/df.eps}
+		\centering\includegraphics[width=4.25in]{figures/myPNGs/df.png}
+	\caption{SOQPSK detection filter $\mathbf{d}$.}
+	\label{fig:detectionFilter}
+\end{figure}
+The symbol-by-symbol detector block in Figure \ref{fig:thisThesisBlock} is an OQPSK detector.
+\begin{figure}
+	\centering\includegraphics[width=11.83in/100*55]{figures/systemOverview/OQPSK.pdf}
+	\caption{Offset Quadrature Phase Shift Keying symbol-by-symbol detector.}
+	\label{fig:OQPSK}
+\end{figure}
+
+A phase lock loop (PLL) is needed in the OQPSK detector to track out residual frequency offset.
+The residual frequency offset results from a frequency offset estimation error.
+Equalizers mitigate the effects of phase offset, timing offset, and ISI because all of these impairments form the  composite channel seen by the equalizer.
+A frequency offset is different, and cannot be mitigated by the equalizer alone.
+The PLL tracks out the residual frequency offset using a feedback control loop.
+The feedback control loop operates in a data-aided mode for $k<L_\text{p}+L_\text{ASM}$ using the known bits of preamble and ASM, denoted $a(k)$ in the figure.
+Note that $y(n)$ is indexed at $2$ samples/bit while $y(k)$ and $\tilde{y}(k)$ are indexed at $1$ sample/bit.
+
+Implementing a PLL may not seem feasible in GPUs because the feedback loop cannot be parallelized.
+But the PAQ system processes $3104$ packets of data simultaneously in parallel.
+Running the PLL and detector serially through a full packet of samples is relatively fast because the loop requires only $10$ floating point operations and a few logic decisions.

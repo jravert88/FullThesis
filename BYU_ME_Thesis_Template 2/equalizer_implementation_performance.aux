@@ -1,0 +1,109 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter\nobreakspace  {}4\hspace  {1em} }Equalizer GPU Implementation and Bit Error Rate Performance}{63}{chapter.4}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
+\newlabel{chap:equalizers_in_gpus}{{4}{63}{Equalizer GPU Implementation and Bit Error Rate Performance}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}GPU Implementation}{63}{section.4.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces A block diagram representation of $\mathbf  {y} = \mathbf  {x} * \mathbf  {c}$. Convolution is performed in the frequency domain. All the required operations in the top part of the figure are represented by the block in the lower part of the figure.\relax }}{64}{figure.caption.61}}
+\newlabel{fig:Conv2}{{4.1}{64}{A block diagram representation of $\mathbf {y} = \mathbf {x} * \mathbf {c}$. Convolution is performed in the frequency domain. All the required operations in the top part of the figure are represented by the block in the lower part of the figure.\relax }{figure.caption.61}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces A block diagram representation of $\mathbf  {y} = (\mathbf  {x} * \mathbf  {c} ) * \mathbf  {D}$ (cascaded convolution), where $\mathbf  {D}$ is the FFT of a filter that does not change with the data (i.e. $\mathbf  {D}$ is precomputed and stored. Convolution is performed in the frequency domain. All the required operations in the top part of the figure are represented by the block in the lower part of the figure.\relax }}{64}{figure.caption.62}}
+\newlabel{fig:Conv3}{{4.2}{64}{A block diagram representation of $\mathbf {y} = (\mathbf {x} * \mathbf {c} ) * \mathbf {D}$ (cascaded convolution), where $\mathbf {D}$ is the FFT of a filter that does not change with the data (i.e. $\mathbf {D}$ is precomputed and stored. Convolution is performed in the frequency domain. All the required operations in the top part of the figure are represented by the block in the lower part of the figure.\relax }{figure.caption.62}{}}
+\citation{hayes:1996}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Zero-forcing and MMSE GPU Implementation}{65}{subsection.4.1.1}}
+\newlabel{eq:R_h_ref}{{4.1}{65}{Zero-forcing and MMSE GPU Implementation}{equation.4.1.1}{}}
+\@writefile{brf}{\backcite{hayes:1996}{{65}{4.1.1}{equation.4.1.1}}}
+\citation{wiki:Sparse_matrix}
+\citation{CUDA_toolkit_doc}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Block diagram showing how the zero-forcing equalizer coefficients are implemented in the GPU.\relax }}{66}{figure.caption.63}}
+\newlabel{fig:blockZF}{{4.3}{66}{Block diagram showing how the zero-forcing equalizer coefficients are implemented in the GPU.\relax }{figure.caption.63}{}}
+\@writefile{brf}{\backcite{wiki:Sparse_matrix}{{66}{4.1.1}{equation.4.1.1}}}
+\@writefile{brf}{\backcite{CUDA_toolkit_doc}{{66}{4.1.1}{equation.4.1.1}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Block diagram showing how the minimum mean-squared error equalizer coefficients are implemented in the GPU.\relax }}{67}{figure.caption.64}}
+\newlabel{fig:blockMMSE}{{4.4}{67}{Block diagram showing how the minimum mean-squared error equalizer coefficients are implemented in the GPU.\relax }{figure.caption.64}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Algorithms used to compute the ZF and MMSE equalizer filters.\relax }}{67}{table.caption.65}}
+\newlabel{tab:ZFMMSEtimingComparison}{{4.1}{67}{Algorithms used to compute the ZF and MMSE equalizer filters.\relax }{table.caption.65}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Constant Modulus Algorithm GPU Implementation}{67}{subsection.4.1.2}}
+\newlabel{eq:DelJcma-approxr_ref}{{4.2}{67}{Constant Modulus Algorithm GPU Implementation}{equation.4.1.2}{}}
+\newlabel{eq:CMA_challenge_ref}{{4.3}{68}{Constant Modulus Algorithm GPU Implementation}{equation.4.1.3}{}}
+\newlabel{eq:delJ_writeoutr}{{4.5}{68}{Constant Modulus Algorithm GPU Implementation}{equation.4.1.5}{}}
+\newlabel{eq:delJ_direct_way}{{4.6}{68}{Constant Modulus Algorithm GPU Implementation}{equation.4.1.6}{}}
+\newlabel{eq:CMA_delJ_rice_reformed}{{4.8}{69}{Constant Modulus Algorithm GPU Implementation}{equation.4.1.8}{}}
+\newlabel{eq:CMA_conv_z_rho}{{4.9}{69}{Constant Modulus Algorithm GPU Implementation}{equation.4.1.9}{}}
+\newlabel{eq:CMA_delJ_donzo}{{4.10}{69}{Constant Modulus Algorithm GPU Implementation}{equation.4.1.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Diagram showing the relationships between $z(n)$, $\rho (n)$ and $\gamma (n)$.\relax }}{70}{figure.caption.66}}
+\newlabel{fig:convolutionFigureRice}{{4.5}{70}{Diagram showing the relationships between $z(n)$, $\rho (n)$ and $\gamma (n)$.\relax }{figure.caption.66}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces MATLAB code listing for the CMA equalizer.\relax }}{70}{table.caption.67}}
+\newlabel{code:CMA}{{4.2}{70}{MATLAB code listing for the CMA equalizer.\relax }{table.caption.67}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Block diagram showing how the CMA equalizer filter is implemented in the GPU using frequency-domain convolution twice per iteration.\relax }}{71}{figure.caption.68}}
+\newlabel{fig:blockCMA}{{4.6}{71}{Block diagram showing how the CMA equalizer filter is implemented in the GPU using frequency-domain convolution twice per iteration.\relax }{figure.caption.68}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces After the final CMA iteration, the de-rotated samples are filtered by the detection filter and the CMA equalizer in the frequency domain.\relax }}{71}{figure.caption.69}}
+\newlabel{fig:blockCMA_apply}{{4.7}{71}{After the final CMA iteration, the de-rotated samples are filtered by the detection filter and the CMA equalizer in the frequency domain.\relax }{figure.caption.69}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}Frequency Domain Equalizer GPU Implementations}{71}{subsection.4.1.3}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Algorithms used to compute the cost function gradient $\nabla J$.\relax }}{71}{table.caption.70}}
+\newlabel{tab:CMAtimingComparison}{{4.3}{71}{Algorithms used to compute the cost function gradient $\nabla J$.\relax }{table.caption.70}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Execution times for calculating and applying Frequency Domain Equalizer One and Two.\relax }}{72}{table.caption.71}}
+\newlabel{tab:FDEtimingComparison}{{4.4}{72}{Execution times for calculating and applying Frequency Domain Equalizer One and Two.\relax }{table.caption.71}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Block diagram showing frequency domain equalizer one is implemented in the frequency domain in GPUs.\relax }}{72}{figure.caption.72}}
+\newlabel{fig:blockFDE1}{{4.8}{72}{Block diagram showing frequency domain equalizer one is implemented in the frequency domain in GPUs.\relax }{figure.caption.72}{}}
+\newlabel{eq:non-overwordative1}{{4.11}{72}{Frequency Domain Equalizer GPU Implementations}{equation.4.1.11}{}}
+\newlabel{eq:non-overwordative2}{{4.12}{72}{Frequency Domain Equalizer GPU Implementations}{equation.4.1.12}{}}
+\citation{rice-davis-bettwieser:2004}
+\citation{hog2016}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Block diagram showing frequency domain equalizer two is implemented in the frequency domain in GPUs.\relax }}{73}{figure.caption.73}}
+\newlabel{fig:blockFDE2}{{4.9}{73}{Block diagram showing frequency domain equalizer two is implemented in the frequency domain in GPUs.\relax }{figure.caption.73}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}CPU and GPU Pipelining}{73}{section.4.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Laboratory Test Results}{73}{section.4.3}}
+\@writefile{brf}{\backcite{rice-davis-bettwieser:2004}{{73}{4.3}{figure.caption.76}}}
+\newlabel{RF2}{74}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces Block diagram showing how the CPU and three GPUs are pipelined.\relax }}{74}{figure.caption.75}}
+\newlabel{fig:GPUpipeLines}{{4.10}{74}{Block diagram showing how the CPU and three GPUs are pipelined.\relax }{figure.caption.75}{}}
+\newlabel{RF3}{75}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces Block diagram showing the configuration for static multipath tests to compare the five data-aided equalizers to no equalization.\relax }}{75}{figure.caption.76}}
+\newlabel{fig:LabTestBlock}{{4.11}{75}{Block diagram showing the configuration for static multipath tests to compare the five data-aided equalizers to no equalization.\relax }{figure.caption.76}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.5}{\ignorespaces Execution times for blocks in Figure \ref  {fig:GPUpipeLines} in order as they appear left to right then top to bottom.\relax }}{76}{table.caption.74}}
+\newlabel{tab:pipelineExecutionTimes}{{4.5}{76}{Execution times for blocks in Figure \ref {fig:GPUpipeLines} in order as they appear left to right then top to bottom.\relax }{table.caption.74}{}}
+\@writefile{brf}{\backcite{hog2016}{{76}{4.3}{figure.caption.76}}}
+\newlabel{RF4}{77}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.12}{\ignorespaces Channel 1 BER static lab test: (top) parameters for the three ray channel; (bottom left) a screen capture of the spectrum with averaging enabled; (bottom right) BER curve of the five data-aided equalizers and no equalization.\relax }}{77}{figure.caption.77}}
+\newlabel{fig:BER1}{{4.12}{77}{Channel 1 BER static lab test: (top) parameters for the three ray channel; (bottom left) a screen capture of the spectrum with averaging enabled; (bottom right) BER curve of the five data-aided equalizers and no equalization.\relax }{figure.caption.77}{}}
+\newlabel{RF5}{78}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.13}{\ignorespaces Channel 2 BER static lab test: (top) parameters for the three ray channel; (bottom left) a screen capture of the spectrum with averaging enabled; (bottom right) BER curve of the five data-aided equalizers and no equalization. No points are shown for no equalization at some values of $E_b/N_0$ because the demodulator was unable to lock.\relax }}{78}{figure.caption.78}}
+\newlabel{fig:BER2}{{4.13}{78}{Channel 2 BER static lab test: (top) parameters for the three ray channel; (bottom left) a screen capture of the spectrum with averaging enabled; (bottom right) BER curve of the five data-aided equalizers and no equalization. No points are shown for no equalization at some values of $E_b/N_0$ because the demodulator was unable to lock.\relax }{figure.caption.78}{}}
+\newlabel{RF6}{79}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.14}{\ignorespaces Channel 3 BER static lab test: (top) parameters for the three ray channel; (bottom left) a screen capture of the spectrum with averaging enabled; (bottom right) BER curve of the five data-aided equalizers and no equalization. No points are shown for no equalization because the demodulator was unable to lock.\relax }}{79}{figure.caption.79}}
+\newlabel{fig:BER3}{{4.14}{79}{Channel 3 BER static lab test: (top) parameters for the three ray channel; (bottom left) a screen capture of the spectrum with averaging enabled; (bottom right) BER curve of the five data-aided equalizers and no equalization. No points are shown for no equalization because the demodulator was unable to lock.\relax }{figure.caption.79}{}}
+\@setckpt{equalizer_implementation_performance}{
+\setcounter{page}{80}
+\setcounter{equation}{12}
+\setcounter{enumi}{0}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{4}
+\setcounter{section}{3}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{14}
+\setcounter{table}{5}
+\setcounter{lofdepth}{1}
+\setcounter{lotdepth}{1}
+\setcounter{parentequation}{0}
+\setcounter{ContinuedFloat}{0}
+\setcounter{subfigure}{0}
+\setcounter{subtable}{0}
+\setcounter{float@type}{8}
+\setcounter{r@tfl@t}{6}
+\setcounter{lstnumber}{270}
+\setcounter{Item}{0}
+\setcounter{Hfootnote}{2}
+\setcounter{bookmark@seq@number}{38}
+\setcounter{lstlisting}{0}
+\setcounter{section@level}{1}
+}

@@ -1,0 +1,736 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Creator: MATLAB, The Mathworks, Inc.
+%%Title: mv_estimate.eps
+%%CreationDate: 07/10/2006  14:58:36
+%%DocumentNeededFonts: Helvetica
+%%DocumentProcessColors: Cyan Magenta Yellow Black
+%%LanguageLevel: 2
+%%Pages: 1
+%%BoundingBox:    69   213   545   589
+%%EndComments
+
+%%BeginProlog
+% MathWorks dictionary
+/MathWorks 160 dict begin
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bind def
+/xdef {exch def} bdef
+/xstore {exch store} bdef
+% operator abbreviations
+/c  /clip ldef
+/cc /concat ldef
+/cp /closepath ldef
+/gr /grestore ldef
+/gs /gsave ldef
+/mt /moveto ldef
+/np /newpath ldef
+/cm /currentmatrix ldef
+/sm /setmatrix ldef
+/rm /rmoveto ldef
+/rl /rlineto ldef
+/s {show newpath} bdef
+/sc {setcmykcolor} bdef
+/sr /setrgbcolor ldef
+/sg /setgray ldef
+/w /setlinewidth ldef
+/j /setlinejoin ldef
+/cap /setlinecap ldef
+/rc {rectclip} bdef
+/rf {rectfill} bdef
+% page state control
+/pgsv () def
+/bpage {/pgsv save def} bdef
+/epage {pgsv restore} bdef
+/bplot /gsave ldef
+/eplot {stroke grestore} bdef
+% orientation switch
+/portraitMode 0 def /landscapeMode 1 def /rotateMode 2 def
+% coordinate system mappings
+/dpi2point 0 def
+% font control
+/FontSize 0 def
+/FMS {/FontSize xstore findfont [FontSize 0 0 FontSize neg 0 0]
+  makefont setfont} bdef
+/ISOLatin1Encoding where {pop /WindowsLatin1Encoding 256 array bdef
+ISOLatin1Encoding WindowsLatin1Encoding copy pop
+/.notdef/.notdef/quotesinglbase/florin/quotedblbase/ellipsis/dagger
+/daggerdbl/circumflex/perthousand/Scaron/guilsinglleft/OE/.notdef/.notdef
+/.notdef/.notdef/quoteleft/quoteright/quotedblleft/quotedblright/bullet
+/endash/emdash/tilde/trademark/scaron/guilsinglright/oe/.notdef/.notdef
+/Ydieresis WindowsLatin1Encoding 128 32 getinterval astore pop}
+{/WindowsLatin1Encoding StandardEncoding bdef} ifelse
+/reencode {exch dup where {pop load} {pop StandardEncoding} ifelse
+  exch dup 3 1 roll findfont dup length dict begin
+  { 1 index /FID ne {def}{pop pop} ifelse } forall
+  /Encoding exch def currentdict end definefont pop} bdef
+/isroman {findfont /CharStrings get /Agrave known} bdef
+/FMSR {3 1 roll 1 index dup isroman {reencode} {pop pop} ifelse
+  exch FMS} bdef
+/csm {1 dpi2point div -1 dpi2point div scale neg translate
+ dup landscapeMode eq {pop -90 rotate}
+  {rotateMode eq {90 rotate} if} ifelse} bdef
+% line types: solid, dotted, dashed, dotdash
+/SO { [] 0 setdash } bdef
+/DO { [.5 dpi2point mul 4 dpi2point mul] 0 setdash } bdef
+/DA { [6 dpi2point mul] 0 setdash } bdef
+/DD { [.5 dpi2point mul 4 dpi2point mul 6 dpi2point mul 4
+  dpi2point mul] 0 setdash } bdef
+% macros for lines and objects
+/L {lineto stroke} bdef
+/MP {3 1 roll moveto 1 sub {rlineto} repeat} bdef
+/AP {{rlineto} repeat} bdef
+/PDlw -1 def
+/W {/PDlw currentlinewidth def setlinewidth} def
+/PP {closepath eofill} bdef
+/DP {closepath stroke} bdef
+/MR {4 -2 roll moveto dup  0 exch rlineto exch 0 rlineto
+  neg 0 exch rlineto closepath} bdef
+/FR {MR stroke} bdef
+/PR {MR fill} bdef
+/L1i {{currentfile picstr readhexstring pop} image} bdef
+/tMatrix matrix def
+/MakeOval {newpath tMatrix currentmatrix pop translate scale
+0 0 1 0 360 arc tMatrix setmatrix} bdef
+/FO {MakeOval stroke} bdef
+/PO {MakeOval fill} bdef
+/PD {currentlinewidth 2 div 0 360 arc fill
+   PDlw -1 eq not {PDlw w /PDlw -1 def} if} def
+/FA {newpath tMatrix currentmatrix pop translate scale
+  0 0 1 5 -2 roll arc tMatrix setmatrix stroke} bdef
+/PA {newpath tMatrix currentmatrix pop	translate 0 0 moveto scale
+  0 0 1 5 -2 roll arc closepath tMatrix setmatrix fill} bdef
+/FAn {newpath tMatrix currentmatrix pop translate scale
+  0 0 1 5 -2 roll arcn tMatrix setmatrix stroke} bdef
+/PAn {newpath tMatrix currentmatrix pop translate 0 0 moveto scale
+  0 0 1 5 -2 roll arcn closepath tMatrix setmatrix fill} bdef
+/vradius 0 def /hradius 0 def /lry 0 def
+/lrx 0 def /uly 0 def /ulx 0 def /rad 0 def
+/MRR {/vradius xdef /hradius xdef /lry xdef /lrx xdef /uly xdef
+  /ulx xdef newpath tMatrix currentmatrix pop ulx hradius add uly
+  vradius add translate hradius vradius scale 0 0 1 180 270 arc 
+  tMatrix setmatrix lrx hradius sub uly vradius add translate
+  hradius vradius scale 0 0 1 270 360 arc tMatrix setmatrix
+  lrx hradius sub lry vradius sub translate hradius vradius scale
+  0 0 1 0 90 arc tMatrix setmatrix ulx hradius add lry vradius sub
+  translate hradius vradius scale 0 0 1 90 180 arc tMatrix setmatrix
+  closepath} bdef
+/FRR {MRR stroke } bdef
+/PRR {MRR fill } bdef
+/MlrRR {/lry xdef /lrx xdef /uly xdef /ulx xdef /rad lry uly sub 2 div def
+  newpath tMatrix currentmatrix pop ulx rad add uly rad add translate
+  rad rad scale 0 0 1 90 270 arc tMatrix setmatrix lrx rad sub lry rad
+  sub translate rad rad scale 0 0 1 270 90 arc tMatrix setmatrix
+  closepath} bdef
+/FlrRR {MlrRR stroke } bdef
+/PlrRR {MlrRR fill } bdef
+/MtbRR {/lry xdef /lrx xdef /uly xdef /ulx xdef /rad lrx ulx sub 2 div def
+  newpath tMatrix currentmatrix pop ulx rad add uly rad add translate
+  rad rad scale 0 0 1 180 360 arc tMatrix setmatrix lrx rad sub lry rad
+  sub translate rad rad scale 0 0 1 0 180 arc tMatrix setmatrix
+  closepath} bdef
+/FtbRR {MtbRR stroke } bdef
+/PtbRR {MtbRR fill } bdef
+/stri 6 array def /dtri 6 array def
+/smat 6 array def /dmat 6 array def
+/tmat1 6 array def /tmat2 6 array def /dif 3 array def
+/asub {/ind2 exch def /ind1 exch def dup dup
+  ind1 get exch ind2 get sub exch } bdef
+/tri_to_matrix {
+  2 0 asub 3 1 asub 4 0 asub 5 1 asub
+  dup 0 get exch 1 get 7 -1 roll astore } bdef
+/compute_transform {
+  dmat dtri tri_to_matrix tmat1 invertmatrix 
+  smat stri tri_to_matrix tmat2 concatmatrix } bdef
+/ds {stri astore pop} bdef
+/dt {dtri astore pop} bdef
+/db {2 copy /cols xdef /rows xdef mul dup 3 mul string
+  currentfile 
+  3 index 0 eq {/ASCIIHexDecode filter}
+  {/ASCII85Decode filter 3 index 2 eq {/RunLengthDecode filter} if }
+  ifelse exch readstring pop
+  dup 0 3 index getinterval /rbmap xdef
+  dup 2 index dup getinterval /gbmap xdef
+  1 index dup 2 mul exch getinterval /bbmap xdef pop pop}bdef
+/it {gs np dtri aload pop moveto lineto lineto cp c
+  cols rows 8 compute_transform 
+  rbmap gbmap bbmap true 3 colorimage gr}bdef
+/il {newpath moveto lineto stroke}bdef
+currentdict end def
+%%EndProlog
+
+%%BeginSetup
+MathWorks begin
+
+0 cap
+
+end
+%%EndSetup
+
+%%Page: 1 1
+%%BeginPageSetup
+%%PageBoundingBox:    69   213   545   589
+MathWorks begin
+bpage
+%%EndPageSetup
+
+%%BeginObject: obj1
+bplot
+
+/dpi2point 12 def
+portraitMode 0204 7344 csm
+
+  628   274  5709  4513 rc
+85 dict begin %Colortable dictionary
+/c0 { 0 0 0 sr} bdef
+/c1 { 1 1 1 sr} bdef
+/c2 { 1 0 0 sr} bdef
+/c3 { 0 1 0 sr} bdef
+/c4 { 0 0 1 sr} bdef
+/c5 { 1 1 0 sr} bdef
+/c6 { 1 0 1 sr} bdef
+/c7 { 0 1 1 sr} bdef
+c0
+1 j
+1 sg
+   0    0 6913 5185 rf
+6 w
+0 4225 5356 0 0 -4225 899 4614 4 MP
+PP
+-5356 0 0 4225 5356 0 0 -4225 899 4614 5 MP stroke
+4 w
+DO
+SO
+6 w
+0 sg
+ 899 4614 mt 6255 4614 L
+ 899 4614 mt  899  389 L
+ 899 4614 mt  899 4560 L
+%%IncludeResource: font Helvetica
+/Helvetica /WindowsLatin1Encoding 120 FMSR
+
+ 796 4759 mt 
+(-1) s
+1434 4614 mt 1434 4560 L
+1281 4759 mt 
+(-0.8) s
+1970 4614 mt 1970 4560 L
+1817 4759 mt 
+(-0.6) s
+2505 4614 mt 2505 4560 L
+2352 4759 mt 
+(-0.4) s
+3041 4614 mt 3041 4560 L
+2888 4759 mt 
+(-0.2) s
+3577 4614 mt 3577 4560 L
+3544 4759 mt 
+(0) s
+4112 4614 mt 4112 4560 L
+4029 4759 mt 
+(0.2) s
+4648 4614 mt 4648 4560 L
+4565 4759 mt 
+(0.4) s
+5183 4614 mt 5183 4560 L
+5100 4759 mt 
+(0.6) s
+5719 4614 mt 5719 4560 L
+5636 4759 mt 
+(0.8) s
+6255 4614 mt 6255 4560 L
+6222 4759 mt 
+(1) s
+ 899 4614 mt  952 4614 L
+ 728 4658 mt 
+(-1) s
+ 899 4191 mt  952 4191 L
+ 628 4235 mt 
+(-0.8) s
+ 899 3769 mt  952 3769 L
+ 628 3813 mt 
+(-0.6) s
+ 899 3346 mt  952 3346 L
+ 628 3390 mt 
+(-0.4) s
+ 899 2924 mt  952 2924 L
+ 628 2968 mt 
+(-0.2) s
+ 899 2501 mt  952 2501 L
+ 798 2545 mt 
+(0) s
+ 899 2078 mt  952 2078 L
+ 698 2122 mt 
+(0.2) s
+ 899 1656 mt  952 1656 L
+ 698 1700 mt 
+(0.4) s
+ 899 1234 mt  952 1234 L
+ 698 1278 mt 
+(0.6) s
+ 899  811 mt  952  811 L
+ 698  855 mt 
+(0.8) s
+ 899  389 mt  952  389 L
+ 798  433 mt 
+(1) s
+gs 899 389 5357 4226 rc
+/c8 { 0.000000 0.000000 1.000000 sr} bdef
+c8
+6255 389 PD
+5987 389 PD
+5719 389 PD
+5451 389 PD
+5183 389 PD
+4916 389 PD
+4648 389 PD
+4380 389 PD
+4112 389 PD
+3844 389 PD
+-19 9 3577 389 2 MP stroke
+-72 31 3309 389 2 MP stroke
+-125 53 3041 389 2 MP stroke
+-178 75 2773 389 2 MP stroke
+-231 97 2505 389 2 MP stroke
+-285 119 2238 389 2 MP stroke
+-338 141 1970 389 2 MP stroke
+-391 163 1702 389 2 MP stroke
+-444 185 1434 389 2 MP stroke
+-267 111 1166 389 2 MP stroke
+899 389 PD
+1 -1 6255 600 2 MP stroke
+269 -81 5987 600 2 MP stroke
+435 -126 5719 600 2 MP stroke
+382 -103 5451 600 2 MP stroke
+329 -81 5183 600 2 MP stroke
+275 -59 4916 600 2 MP stroke
+222 -37 4648 600 2 MP stroke
+169 -15 4380 600 2 MP stroke
+116 7 4112 600 2 MP stroke
+63 29 3844 600 2 MP stroke
+9 51 3577 600 2 MP stroke
+-44 73 3309 600 2 MP stroke
+-97 95 3041 600 2 MP stroke
+-150 117 2773 600 2 MP stroke
+-203 139 2505 600 2 MP stroke
+-257 161 2238 600 2 MP stroke
+-310 183 1970 600 2 MP stroke
+-363 206 1702 600 2 MP stroke
+-416 228 1434 600 2 MP stroke
+-267 142 1166 600 2 MP stroke
+899 600 PD
+1 0 6255 811 2 MP stroke
+269 -55 5987 811 2 MP stroke
+463 -83 5719 811 2 MP stroke
+410 -61 5451 811 2 MP stroke
+357 -39 5183 811 2 MP stroke
+303 -17 4916 811 2 MP stroke
+250 5 4648 811 2 MP stroke
+197 27 4380 811 2 MP stroke
+144 49 4112 811 2 MP stroke
+91 71 3844 811 2 MP stroke
+37 93 3577 811 2 MP stroke
+-16 115 3309 811 2 MP stroke
+-69 137 3041 811 2 MP stroke
+-122 159 2773 811 2 MP stroke
+-175 182 2505 811 2 MP stroke
+-229 204 2238 811 2 MP stroke
+-282 226 1970 811 2 MP stroke
+-335 248 1702 811 2 MP stroke
+-388 270 1434 811 2 MP stroke
+-267 177 1166 811 2 MP stroke
+899 811 PD
+1 0 6255 1022 2 MP stroke
+269 -31 5987 1022 2 MP stroke
+491 -41 5719 1022 2 MP stroke
+438 -19 5451 1022 2 MP stroke
+385 3 5183 1022 2 MP stroke
+331 25 4916 1022 2 MP stroke
+278 47 4648 1022 2 MP stroke
+225 69 4380 1022 2 MP stroke
+172 91 4112 1022 2 MP stroke
+119 113 3844 1022 2 MP stroke
+65 135 3577 1022 2 MP stroke
+12 158 3309 1022 2 MP stroke
+-41 180 3041 1022 2 MP stroke
+-94 202 2773 1022 2 MP stroke
+-147 224 2505 1022 2 MP stroke
+-201 246 2238 1022 2 MP stroke
+-254 268 1970 1022 2 MP stroke
+-307 290 1702 1022 2 MP stroke
+-360 312 1434 1022 2 MP stroke
+-267 217 1166 1022 2 MP stroke
+899 1022 PD
+1 -1 6255 1234 2 MP stroke
+269 -11 5987 1234 2 MP stroke
+519 0 5719 1234 2 MP stroke
+466 22 5451 1234 2 MP stroke
+413 44 5183 1234 2 MP stroke
+359 66 4916 1234 2 MP stroke
+306 88 4648 1234 2 MP stroke
+253 110 4380 1234 2 MP stroke
+200 133 4112 1234 2 MP stroke
+147 155 3844 1234 2 MP stroke
+93 177 3577 1234 2 MP stroke
+40 199 3309 1234 2 MP stroke
+-13 221 3041 1234 2 MP stroke
+-66 243 2773 1234 2 MP stroke
+-119 265 2505 1234 2 MP stroke
+-173 287 2238 1234 2 MP stroke
+-226 309 1970 1234 2 MP stroke
+-279 331 1702 1234 2 MP stroke
+-332 353 1434 1234 2 MP stroke
+-267 261 1166 1234 2 MP stroke
+899 1234 PD
+1 0 6255 1445 2 MP stroke
+269 9 5987 1445 2 MP stroke
+537 42 5719 1445 2 MP stroke
+494 64 5451 1445 2 MP stroke
+441 86 5183 1445 2 MP stroke
+387 109 4916 1445 2 MP stroke
+334 131 4648 1445 2 MP stroke
+281 153 4380 1445 2 MP stroke
+228 175 4112 1445 2 MP stroke
+175 197 3844 1445 2 MP stroke
+121 219 3577 1445 2 MP stroke
+68 241 3309 1445 2 MP stroke
+15 263 3041 1445 2 MP stroke
+-38 285 2773 1445 2 MP stroke
+-91 307 2505 1445 2 MP stroke
+-145 329 2238 1445 2 MP stroke
+-198 351 1970 1445 2 MP stroke
+-251 373 1702 1445 2 MP stroke
+-304 395 1434 1445 2 MP stroke
+-267 313 1166 1445 2 MP stroke
+899 1445 PD
+1 0 6255 1656 2 MP stroke
+269 27 5987 1656 2 MP stroke
+537 79 5719 1656 2 MP stroke
+522 107 5451 1656 2 MP stroke
+469 129 5183 1656 2 MP stroke
+415 151 4916 1656 2 MP stroke
+362 173 4648 1656 2 MP stroke
+309 195 4380 1656 2 MP stroke
+256 217 4112 1656 2 MP stroke
+203 239 3844 1656 2 MP stroke
+149 261 3577 1656 2 MP stroke
+96 283 3309 1656 2 MP stroke
+43 305 3041 1656 2 MP stroke
+-10 327 2773 1656 2 MP stroke
+-63 349 2505 1656 2 MP stroke
+-117 371 2238 1656 2 MP stroke
+-170 394 1970 1656 2 MP stroke
+-223 416 1702 1656 2 MP stroke
+-276 438 1434 1656 2 MP stroke
+-267 374 1166 1656 2 MP stroke
+899 1656 PD
+1 0 6255 1867 2 MP stroke
+269 43 5987 1867 2 MP stroke
+537 113 5719 1867 2 MP stroke
+550 149 5451 1867 2 MP stroke
+497 171 5183 1867 2 MP stroke
+443 193 4916 1867 2 MP stroke
+390 215 4648 1867 2 MP stroke
+337 237 4380 1867 2 MP stroke
+284 259 4112 1867 2 MP stroke
+231 281 3844 1867 2 MP stroke
+177 303 3577 1867 2 MP stroke
+124 325 3309 1867 2 MP stroke
+71 347 3041 1867 2 MP stroke
+18 370 2773 1867 2 MP stroke
+-35 392 2505 1867 2 MP stroke
+-89 414 2238 1867 2 MP stroke
+-142 436 1970 1867 2 MP stroke
+-195 458 1702 1867 2 MP stroke
+-248 480 1434 1867 2 MP stroke
+-267 446 1166 1867 2 MP stroke
+899 1867 PD
+1 0 6255 2079 2 MP stroke
+269 57 5987 2079 2 MP stroke
+537 143 5719 2079 2 MP stroke
+578 190 5451 2079 2 MP stroke
+525 212 5183 2079 2 MP stroke
+471 234 4916 2079 2 MP stroke
+418 256 4648 2079 2 MP stroke
+365 278 4380 2079 2 MP stroke
+312 300 4112 2079 2 MP stroke
+259 322 3844 2079 2 MP stroke
+205 345 3577 2079 2 MP stroke
+152 367 3309 2079 2 MP stroke
+99 389 3041 2079 2 MP stroke
+46 411 2773 2079 2 MP stroke
+-7 433 2505 2079 2 MP stroke
+-61 455 2238 2079 2 MP stroke
+-114 477 1970 2079 2 MP stroke
+-167 499 1702 2079 2 MP stroke
+-220 521 1434 2079 2 MP stroke
+-267 532 1166 2079 2 MP stroke
+899 2079 PD
+1 0 6255 2290 2 MP stroke
+269 71 5987 2290 2 MP stroke
+537 171 5719 2290 2 MP stroke
+606 232 5451 2290 2 MP stroke
+553 254 5183 2290 2 MP stroke
+499 276 4916 2290 2 MP stroke
+446 298 4648 2290 2 MP stroke
+393 321 4380 2290 2 MP stroke
+340 343 4112 2290 2 MP stroke
+287 365 3844 2290 2 MP stroke
+233 387 3577 2290 2 MP stroke
+180 409 3309 2290 2 MP stroke
+127 431 3041 2290 2 MP stroke
+74 453 2773 2290 2 MP stroke
+21 475 2505 2290 2 MP stroke
+-33 497 2238 2290 2 MP stroke
+-86 519 1970 2290 2 MP stroke
+-139 541 1702 2290 2 MP stroke
+-192 563 1434 2290 2 MP stroke
+-245 585 1166 2290 2 MP stroke
+899 2290 PD
+1 0 6255 2501 2 MP stroke
+269 84 5987 2501 2 MP stroke
+537 197 5719 2501 2 MP stroke
+634 274 5451 2501 2 MP stroke
+581 297 5183 2501 2 MP stroke
+527 319 4916 2501 2 MP stroke
+474 341 4648 2501 2 MP stroke
+421 363 4380 2501 2 MP stroke
+368 385 4112 2501 2 MP stroke
+315 407 3844 2501 2 MP stroke
+261 429 3577 2501 2 MP stroke
+208 451 3309 2501 2 MP stroke
+155 473 3041 2501 2 MP stroke
+102 495 2773 2501 2 MP stroke
+49 517 2505 2501 2 MP stroke
+-5 539 2238 2501 2 MP stroke
+-58 561 1970 2501 2 MP stroke
+-111 583 1702 2501 2 MP stroke
+-164 605 1434 2501 2 MP stroke
+-217 628 1166 2501 2 MP stroke
+899 2501 PD
+1 1 6255 2712 2 MP stroke
+269 96 5987 2712 2 MP stroke
+537 221 5719 2712 2 MP stroke
+662 317 5451 2712 2 MP stroke
+609 339 5183 2712 2 MP stroke
+555 361 4916 2712 2 MP stroke
+502 383 4648 2712 2 MP stroke
+449 405 4380 2712 2 MP stroke
+396 427 4112 2712 2 MP stroke
+343 449 3844 2712 2 MP stroke
+289 471 3577 2712 2 MP stroke
+236 493 3309 2712 2 MP stroke
+183 515 3041 2712 2 MP stroke
+130 537 2773 2712 2 MP stroke
+77 559 2505 2712 2 MP stroke
+23 582 2238 2712 2 MP stroke
+-30 604 1970 2712 2 MP stroke
+-83 626 1702 2712 2 MP stroke
+-136 648 1434 2712 2 MP stroke
+-189 670 1166 2712 2 MP stroke
+899 2712 PD
+1 0 6255 2924 2 MP stroke
+269 106 5987 2924 2 MP stroke
+537 242 5719 2924 2 MP stroke
+690 358 5451 2924 2 MP stroke
+637 380 5183 2924 2 MP stroke
+583 402 4916 2924 2 MP stroke
+530 424 4648 2924 2 MP stroke
+477 446 4380 2924 2 MP stroke
+424 468 4112 2924 2 MP stroke
+371 490 3844 2924 2 MP stroke
+317 512 3577 2924 2 MP stroke
+264 534 3309 2924 2 MP stroke
+211 557 3041 2924 2 MP stroke
+158 579 2773 2924 2 MP stroke
+105 601 2505 2924 2 MP stroke
+51 623 2238 2924 2 MP stroke
+-2 645 1970 2924 2 MP stroke
+-55 667 1702 2924 2 MP stroke
+-108 689 1434 2924 2 MP stroke
+-161 711 1166 2924 2 MP stroke
+899 2924 PD
+1 0 6255 3135 2 MP stroke
+269 116 5987 3135 2 MP stroke
+537 263 5719 3135 2 MP stroke
+718 400 5451 3135 2 MP stroke
+665 422 5183 3135 2 MP stroke
+611 444 4916 3135 2 MP stroke
+558 466 4648 3135 2 MP stroke
+505 488 4380 3135 2 MP stroke
+452 510 4112 3135 2 MP stroke
+399 533 3844 3135 2 MP stroke
+345 555 3577 3135 2 MP stroke
+292 577 3309 3135 2 MP stroke
+239 599 3041 3135 2 MP stroke
+186 621 2773 3135 2 MP stroke
+133 643 2505 3135 2 MP stroke
+79 665 2238 3135 2 MP stroke
+26 687 1970 3135 2 MP stroke
+-27 709 1702 3135 2 MP stroke
+-80 731 1434 3135 2 MP stroke
+-133 753 1166 3135 2 MP stroke
+899 3135 PD
+1 0 6255 3346 2 MP stroke
+269 126 5987 3346 2 MP stroke
+537 282 5719 3346 2 MP stroke
+746 442 5451 3346 2 MP stroke
+693 464 5183 3346 2 MP stroke
+639 486 4916 3346 2 MP stroke
+586 509 4648 3346 2 MP stroke
+533 531 4380 3346 2 MP stroke
+480 553 4112 3346 2 MP stroke
+427 575 3844 3346 2 MP stroke
+373 597 3577 3346 2 MP stroke
+320 619 3309 3346 2 MP stroke
+267 641 3041 3346 2 MP stroke
+214 663 2773 3346 2 MP stroke
+161 685 2505 3346 2 MP stroke
+107 707 2238 3346 2 MP stroke
+54 729 1970 3346 2 MP stroke
+1 751 1702 3346 2 MP stroke
+-52 773 1434 3346 2 MP stroke
+-105 795 1166 3346 2 MP stroke
+899 3346 PD
+1 1 6255 3557 2 MP stroke
+269 135 5987 3557 2 MP stroke
+537 300 5719 3557 2 MP stroke
+774 485 5451 3557 2 MP stroke
+721 507 5183 3557 2 MP stroke
+667 529 4916 3557 2 MP stroke
+614 551 4648 3557 2 MP stroke
+561 573 4380 3557 2 MP stroke
+508 595 4112 3557 2 MP stroke
+455 617 3844 3557 2 MP stroke
+401 639 3577 3557 2 MP stroke
+348 661 3309 3557 2 MP stroke
+295 683 3041 3557 2 MP stroke
+242 705 2773 3557 2 MP stroke
+189 727 2505 3557 2 MP stroke
+135 749 2238 3557 2 MP stroke
+82 771 1970 3557 2 MP stroke
+29 794 1702 3557 2 MP stroke
+-24 816 1434 3557 2 MP stroke
+-77 838 1166 3557 2 MP stroke
+899 3557 PD
+1 0 6255 3769 2 MP stroke
+269 142 5987 3769 2 MP stroke
+537 316 5719 3769 2 MP stroke
+802 526 5451 3769 2 MP stroke
+749 548 5183 3769 2 MP stroke
+695 570 4916 3769 2 MP stroke
+642 592 4648 3769 2 MP stroke
+589 614 4380 3769 2 MP stroke
+536 636 4112 3769 2 MP stroke
+483 658 3844 3769 2 MP stroke
+429 680 3577 3769 2 MP stroke
+376 702 3309 3769 2 MP stroke
+323 724 3041 3769 2 MP stroke
+270 746 2773 3769 2 MP stroke
+217 769 2505 3769 2 MP stroke
+163 791 2238 3769 2 MP stroke
+110 813 1970 3769 2 MP stroke
+57 835 1702 3769 2 MP stroke
+4 846 1434 3769 2 MP stroke
+-47 846 1166 3769 2 MP stroke
+899 3769 PD
+1 0 6255 3980 2 MP stroke
+269 150 5987 3980 2 MP stroke
+537 332 5719 3980 2 MP stroke
+805 551 5451 3980 2 MP stroke
+777 590 5183 3980 2 MP stroke
+723 612 4916 3980 2 MP stroke
+670 634 4648 3980 2 MP stroke
+596 635 4380 3980 2 MP stroke
+527 635 4112 3980 2 MP stroke
+463 635 3844 3980 2 MP stroke
+401 635 3577 3980 2 MP stroke
+344 635 3309 3980 2 MP stroke
+290 635 3041 3980 2 MP stroke
+240 635 2773 3980 2 MP stroke
+192 635 2505 3980 2 MP stroke
+145 635 2238 3980 2 MP stroke
+102 635 1970 3980 2 MP stroke
+61 635 1702 3980 2 MP stroke
+22 635 1434 3980 2 MP stroke
+-15 635 1166 3980 2 MP stroke
+899 3980 PD
+1 1 6255 4191 2 MP stroke
+269 158 5987 4191 2 MP stroke
+537 347 5719 4191 2 MP stroke
+595 424 5451 4191 2 MP stroke
+539 424 5183 4191 2 MP stroke
+486 424 4916 4191 2 MP stroke
+437 424 4648 4191 2 MP stroke
+391 424 4380 4191 2 MP stroke
+348 424 4112 4191 2 MP stroke
+307 424 3844 4191 2 MP stroke
+268 424 3577 4191 2 MP stroke
+232 424 3309 4191 2 MP stroke
+198 424 3041 4191 2 MP stroke
+166 424 2773 4191 2 MP stroke
+136 424 2505 4191 2 MP stroke
+106 424 2238 4191 2 MP stroke
+78 424 1970 4191 2 MP stroke
+52 424 1702 4191 2 MP stroke
+27 424 1434 4191 2 MP stroke
+3 424 1166 4191 2 MP stroke
+899 4191 PD
+1 1 6255 4402 2 MP stroke
+269 165 5987 4402 2 MP stroke
+316 213 5719 4402 2 MP stroke
+288 213 5451 4402 2 MP stroke
+262 213 5183 4402 2 MP stroke
+237 213 4916 4402 2 MP stroke
+214 213 4648 4402 2 MP stroke
+193 213 4380 4402 2 MP stroke
+173 213 4112 4402 2 MP stroke
+154 213 3844 4402 2 MP stroke
+135 213 3577 4402 2 MP stroke
+117 213 3309 4402 2 MP stroke
+101 213 3041 4402 2 MP stroke
+86 213 2773 4402 2 MP stroke
+72 213 2505 4402 2 MP stroke
+57 213 2238 4402 2 MP stroke
+44 213 1970 4402 2 MP stroke
+31 213 1702 4402 2 MP stroke
+19 213 1434 4402 2 MP stroke
+8 213 1166 4402 2 MP stroke
+899 4402 PD
+1 0 6255 4614 2 MP stroke
+1 1 5987 4614 2 MP stroke
+1 1 5719 4614 2 MP stroke
+1 1 5451 4614 2 MP stroke
+2 1 5183 4614 2 MP stroke
+1 1 4916 4614 2 MP stroke
+1 1 4648 4614 2 MP stroke
+1 1 4380 4614 2 MP stroke
+1 1 4112 4614 2 MP stroke
+1 1 3844 4614 2 MP stroke
+0 1 3577 4614 2 MP stroke
+0 1 3309 4614 2 MP stroke
+0 1 3041 4614 2 MP stroke
+1 1 2773 4614 2 MP stroke
+1 1 2505 4614 2 MP stroke
+0 1 2238 4614 2 MP stroke
+0 1 1970 4614 2 MP stroke
+0 1 1702 4614 2 MP stroke
+0 1 1434 4614 2 MP stroke
+0 1 1166 4614 2 MP stroke
+0 1 899 4614 2 MP stroke
+gr
+
+c8
+
+end
+
+eplot
+%%EndObject
+
+epage
+end
+
+showpage
+
+%%Trailer
+%%EOF
