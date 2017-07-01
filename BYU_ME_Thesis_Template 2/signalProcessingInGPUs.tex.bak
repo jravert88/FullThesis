@@ -686,7 +686,8 @@ Figure \ref{fig:CPUvsGPU_varyBatches_186taps_12672signal} compares execution tim
 This figure shows that frequency-domain convolution leverages batch processing better than time-domain convolution.
 As expected, CPU-based convolution using batch processing is not competitive with GPU-based convolution using batch processing and thus CPU-batched processing is not explored any further.
 \begin{figure}
-	\centering\includegraphics[width=5in]{figures/gpu_intro/CPUvsGPU_varyBatches_186taps_12672signal.eps}
+%	\centering\includegraphics[width=5in]{figures/gpu_intro/CPUvsGPU_varyBatches_186taps_12672signal.eps}
+	\centering\includegraphics[width=5in]{figures/myPNGs/CPUvsGPU_varyBatches_186taps_12672signal.png}
 	\caption{Comparison of a batched complex convolution on a CPU and GPU. The number of batches is variable while the signal and filter length is set to $12$,$672$ and $186$.}
 	\label{fig:CPUvsGPU_varyBatches_186taps_12672signal}
 \end{figure}
@@ -695,7 +696,8 @@ Now that the GPU and CPU execution time is not being compared, Table \ref{tab:Ba
 Figure \ref{fig:CPUvsGPU_varyBatches_186taps_12672signal_timePerBatch} compares GPU convolution using batch processing execution time per batch as the number of packets increases.
 The figure shows execution time per batch decreases as the number of packets increases but stops improving after 70 packets.
 \begin{figure}
-	\centering\includegraphics[width=5in]{figures/gpu_intro/CPUvsGPU_varyBatches_186taps_12672signal_timePerBatch.eps}
+%	\centering\includegraphics[width=5in]{figures/gpu_intro/CPUvsGPU_varyBatches_186taps_12672signal_timePerBatch.eps}
+	\centering\includegraphics[width=5in]{figures/myPNGs/CPUvsGPU_varyBatches_186taps_12672signal_timePerBatch.png}
 	\caption{Comparison on execution time per batch for complex convolution. The number of batches is variable while the signal and filter length is set to $12$,$672$ and $186$.}
 	\label{fig:CPUvsGPU_varyBatches_186taps_12672signal_timePerBatch}
 \end{figure}
@@ -708,17 +710,20 @@ show the execution times for the signal length and filter lengths of the PAQ sys
 Frequency-domain convolution using batch processing is fastest for $186$ tap filters while 
 time-domain convolution using batch processing and shared memory is fastest for $23$ tap filters.
 \begin{figure}
-	\centering\includegraphics[width=5in]{figures/gpu_intro/CPUvsGPU_3104batch_186taps_varySignal.eps}
+%	\centering\includegraphics[width=5in]{figures/gpu_intro/CPUvsGPU_3104batch_186taps_varySignal.eps}
+	\centering\includegraphics[width=5in]{figures/myPNGs/CPUvsGPU_3104batch_186taps_varySignal.png}
 	\caption{Comparison of complex convolution using batch processing on a GPU. The signal length is variable and the filter is fixed at $186$ taps.}
 	\label{fig:CPUvsGPU_3104batch_186taps_varySignal}
 \end{figure}
 \begin{figure}
-	\centering\includegraphics[width=5in]{figures/gpu_intro/CPUvsGPU_3104batch_23taps_varySignal.eps}
+%	\centering\includegraphics[width=5in]{figures/gpu_intro/CPUvsGPU_3104batch_23taps_varySignal.eps}
+	\centering\includegraphics[width=5in]{figures/myPNGs/CPUvsGPU_3104batch_23taps_varySignal.png}
 	\caption{Comparison of complex convolution using batch processing on a GPU. The signal length is variable and the filter is fixed at $23$ taps.}
 	\label{fig:CPUvsGPU_3104batch_23taps_varySignal}
 \end{figure}
 \begin{figure}
-	\centering\includegraphics[width=5in]{figures/gpu_intro/CPUvsGPU_3104batch_12672signal_varyFilter.eps}
+%	\centering\includegraphics[width=5in]{figures/gpu_intro/CPUvsGPU_3104batch_12672signal_varyFilter.eps}
+	\centering\includegraphics[width=5in]{figures/myPNGs/CPUvsGPU_3104batch_12672signal_varyFilter.png}
 	\caption{Comparison of complex convolution using batch processing on a GPU. The filter length is variable and the signal length is set to $12$,$672$ samples.}
 	\label{fig:CPUvsGPU_3104batch_12672signal_varyFilter}
 \end{figure}
